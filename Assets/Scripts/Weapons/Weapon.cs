@@ -5,7 +5,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private WeaponParameters _weaponParameters;
     [SerializeField] private GameObject _posAttack;
 
-    protected WeaponParameters WeaponParameters => _weaponParameters;
+    public WeaponParameters WeaponParameters => _weaponParameters;
     protected GameObject PosAttack => _posAttack;
     protected float _timerBulletDelay;
 

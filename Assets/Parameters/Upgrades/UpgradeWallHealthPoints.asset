@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b393271a217ba7040a32232274ccd8e3, type: 3}
   m_Name: UpgradeWallHealthPoints
   m_EditorClassIdentifier: 
-  _minValue: 1
-  _maxValue: 2
-  _name: "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435 \u0441\u0442\u0435\u043D\u044B"
+  _minValue: 2
+  _maxValue: 5

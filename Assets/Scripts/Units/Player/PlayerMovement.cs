@@ -19,9 +19,9 @@ public class PlayerMovement : PlayerController, IMove
 
     private void Update()
     {
-        Debug.Log(HealthPoints);
         Move();
-        JoystickMove();
+        if (_moveJoystick != null)
+            JoystickMove();
     }
 
     public void Move()

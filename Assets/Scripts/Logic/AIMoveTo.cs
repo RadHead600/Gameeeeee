@@ -12,11 +12,10 @@ public class AIMoveTo : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
     }
+
     void Update()
     {
         if (_playerMovement.MoveVector != Vector3.zero)
-        {
             agent.SetDestination(_playerMovement.transform.position);
-        }
     }
 }
