@@ -6,7 +6,7 @@ public class PlayerController : Unit
 
     protected PlayerParameters PlayerParameters => _playerParameters;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Speed = _playerParameters.Speed;
         HealthPoints = _playerParameters.MinHealthPoints;

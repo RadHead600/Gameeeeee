@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Hands
   m_EditorClassIdentifier: 
   _attackDamage: 1
-  _attackSpeed: 0.5
-  _attackDelay: 0.5
+  _attackSpeed: 0
+  _attackDelay: 1
   _bullet: {fileID: 0}

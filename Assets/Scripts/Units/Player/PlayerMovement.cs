@@ -1,16 +1,33 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class PlayerMovement : PlayerController, IMove
 {
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private UnitParameters _unitParameters;
-    [SerializeField] Joystick _moveJoystick;
+    [SerializeField] private Joystick _moveJoystick;
+    [SerializeField] private Animator _animator;
+
+    public static PlayerMovement Instance { get; private set; }
 
     private Vector3 _moveVector;
     private Vector3 _fwd, _right;
 
     public Vector3 MoveVector => _moveVector;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (Instance != null)
+        {
+            Debug.LogError($"Exists more than 1 instance of {typeof(PlayerMovement).Name} class!");
+
+            throw new Exception();
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -33,7 +50,7 @@ public class PlayerMovement : PlayerController, IMove
 
         _characterController.Move(_moveVector * Time.deltaTime);
 
-        if (!LookAt.IsLookedAt)
+        if (!Attack.IsAttack)
         {
             Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             movementDirection.Normalize();
@@ -55,12 +72,13 @@ public class PlayerMovement : PlayerController, IMove
         Vector3 upMovement = _fwd * Speed * Time.deltaTime * _moveJoystick.Direction.y;
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
         _characterController.Move(heading * Speed * Time.deltaTime);
-        if (!LookAt.IsLookedAt)
+        if (!Attack.IsAttack)
             Direction(heading);
     }
 
     private void Direction(Vector3 movementDirection)
     {
+        _animator.SetFloat("Speed", movementDirection.magnitude);
         if (movementDirection != Vector3.zero)
             transform.DOLookAt(movementDirection + transform.position, _unitParameters.DirectionTime);
     }

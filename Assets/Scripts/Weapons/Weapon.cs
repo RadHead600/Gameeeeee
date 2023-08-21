@@ -6,21 +6,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject _posAttack;
 
     public WeaponParameters WeaponParameters => _weaponParameters;
-    protected GameObject PosAttack => _posAttack;
-    protected float _timerBulletDelay;
-
-    private void Update()
-    {
-        if (_timerBulletDelay > 0)
-        {
-            _timerBulletDelay -= Time.deltaTime;
-        }
-    }
+    public GameObject PosAttack => _posAttack;
+    public float TimerBulletDelay { get; protected set; }
 
     public virtual void Attack()
     {
-        if (_timerBulletDelay > 0)
-            return;
         Shot();
     }
     
@@ -34,6 +24,7 @@ public class Weapon : MonoBehaviour
         }
         catch
         {
+            Debug.Log("Bullet is null.");
             return;
         }
 
@@ -41,6 +32,6 @@ public class Weapon : MonoBehaviour
 
         newBullet.Speed = _weaponParameters.AttackSpeed;
         newBullet.Damage = _weaponParameters.AttackDamage;
-        _timerBulletDelay = _weaponParameters.AttackDelay;
+        TimerBulletDelay = _weaponParameters.AttackDelay;
     }
 }

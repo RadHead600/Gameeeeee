@@ -10,7 +10,6 @@ public class LookAt : MonoBehaviour
     [SerializeField] private float minTriggerDistance;
 
     private SphereCollider _sphereCollider;
-    public static bool IsLookedAt { get; private set; }
 
     private void Awake()
     {
@@ -21,19 +20,15 @@ public class LookAt : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<Unit>() == null)
-            return;
         if ((1 << other.gameObject.layer) != _layerMask.value)
             return;
-        Vector3 LookPos = new Vector3(other.gameObject.transform.position.x, gameObject.transform.position.y, other.gameObject.transform.position.z);
-
-        transform.DOLookAt(LookPos, _unitParameters.DirectionTime);
-        _unitAttack.Shoot();
-        IsLookedAt = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        IsLookedAt = false;
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, transform.forward);
+        Physics.Raycast(ray, out hit);
+        Debug.DrawLine(ray.origin, hit.point, Color.red);
+        Vector3 lookAt = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+        transform.DOLookAt(lookAt, _unitParameters.DirectionTime);
+        if (_unitAttack.enabled)
+            _unitAttack.Shoot();
     }
 }

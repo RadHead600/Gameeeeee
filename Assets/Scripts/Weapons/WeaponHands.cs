@@ -2,30 +2,23 @@ using UnityEngine;
 
 public class WeaponHands : Weapon
 {
-    [SerializeField] private float attackRadius;
+    [SerializeField] private float _attackRadius;
     [SerializeField] private LayerMask _layerMask;
 
     public override void Attack()
     {
-
+        if (GetUnit())
+            GetUnit().HealthPoints -= WeaponParameters.AttackDamage;
+        TimerBulletDelay = WeaponParameters.AttackDelay;
     }
 
-    private void OnTriggerStay(Collider other)
+    private Unit GetUnit()
     {
-        if (_timerBulletDelay > 0)
-            return;
-        if (other.GetComponent<Unit>() != null)
-        {
-            Collider[] colliders = Physics.OverlapSphere(PosAttack.transform.position, attackRadius, _layerMask);
-            if (colliders.Length < 0.6f)
-                return;
-            other.GetComponent<Unit>().HealthPoints -= WeaponParameters.AttackDamage;
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
+        Collider[] colliders = Physics.OverlapSphere(PosAttack.transform.position, _attackRadius, _layerMask);
+        if (colliders.Length < 1)
+            return null;
+        if (colliders[0].gameObject.GetComponentInChildren<Unit>() == null)
+            return null;
+        return colliders[0].gameObject.GetComponentInChildren<Unit>();
     }
 }

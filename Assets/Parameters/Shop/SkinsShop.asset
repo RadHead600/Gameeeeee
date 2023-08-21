@@ -15,33 +15,44 @@ MonoBehaviour:
   _items:
   - _itemName: "\u0412\u044B\u0436\u0438\u0432\u0448\u0438\u0439"
     _itemCost: 0
+    _moneyType: 1
     _itemObject: {fileID: 1481507703513659801, guid: 1ca544762b9b6724eb3a1f527bc801b2,
       type: 3}
   - _itemName: "\u0424\u0435\u0440\u043C\u0435\u0440"
     _itemCost: 100
+    _moneyType: 1
     _itemObject: {fileID: 6467579504129753155, guid: cf9efd3fd30bf834182008b5bad10261,
       type: 3}
   - _itemName: "\u0420\u0430\u0431\u043E\u0447\u0438\u0439"
     _itemCost: 100
+    _moneyType: 1
     _itemObject: {fileID: 461317642086422710, guid: f5f371f8b42b76048b1d9ef1deaae9b1,
       type: 3}
   - _itemName: "\u0411\u043E\u043A\u0441\u0435\u0440"
     _itemCost: 100
+    _moneyType: 1
     _itemObject: {fileID: 7734866791061248806, guid: b2856c725951f264991aec716f125f5a,
       type: 3}
   - _itemName: "\u0412\u043E\u0440"
     _itemCost: 200
+    _moneyType: 1
     _itemObject: {fileID: 3993193315393898497, guid: e322888765a74f34981309713aa3a3f6,
       type: 3}
   - _itemName: "\u0417\u0430\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044B\u0439"
     _itemCost: 200
+    _moneyType: 1
     _itemObject: {fileID: 6880881064630848927, guid: 4358eaea862f16c49beb9ea103c961a7,
       type: 3}
   - _itemName: "\u041F\u043E\u043B\u0438\u0446\u0435\u0439\u0441\u043A\u0438\u0439"
     _itemCost: 300
+    _moneyType: 1
     _itemObject: {fileID: 7677570209084713808, guid: deff048f1396f004c928127bbf0a5d7c,
       type: 3}
   - _itemName: "\u0411\u043E\u0441\u0441"
     _itemCost: 500
+    _moneyType: 1
     _itemObject: {fileID: 7710563780998977196, guid: 352585294f4346148826b06701183477,
       type: 3}
+  _moneySprites:
+  - {fileID: 21300000, guid: 4ca0708151b60449d97a6e6a1455f979, type: 3}
+  - {fileID: 21300000, guid: 52066fc285ffc4bb0b9fc98f1d840149, type: 3}

@@ -1,6 +1,7 @@
 public static class SaveParameters
 {
-    public static int money;
+    public static int golds;
+    public static int gems;
 
     public static int weaponEquip;
     public static bool[] weaponsBought;

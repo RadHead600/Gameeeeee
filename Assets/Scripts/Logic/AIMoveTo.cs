@@ -1,21 +1,27 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class AIMoveTo : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement _playerMovement;
-
-    private NavMeshAgent agent;
+    [SerializeField] private float _trackingUpdateTime = 1.5f;
+    
+    private NavMeshAgent _agent;
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponent<NavMeshAgent>();
+        StartCoroutine(GoToObject());
     }
 
-    void Update()
+    private IEnumerator GoToObject()
     {
-        if (_playerMovement.MoveVector != Vector3.zero)
-            agent.SetDestination(_playerMovement.transform.position);
+        yield return new WaitForSeconds(_trackingUpdateTime);
+        if (PlayerMovement.Instance.MoveVector != Vector3.zero)
+        {
+            _agent.SetDestination(PlayerMovement.Instance.transform.position);
+        }
+        StartCoroutine(GoToObject());
     }
 }
