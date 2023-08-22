@@ -7,7 +7,6 @@ public class ChangeLanguage : MonoBehaviour
 {
     private void Awake()
     {
-        Debug.Log(Application.systemLanguage);
         if (Application.systemLanguage == SystemLanguage.Russian)
             LangsList.SetLanguage(0);
         if (Application.systemLanguage == SystemLanguage.English)

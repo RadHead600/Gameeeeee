@@ -172,14 +172,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762746197853485710}
-  m_LocalRotation: {x: -0.22596563, y: 0.72774845, z: 0.121659085, w: -0.6360195}
-  m_LocalPosition: {x: 0.5393273, y: -0.12324886, z: 0.8785992}
+  m_LocalRotation: {x: 0.21130908, y: -0.7848856, z: 0.45315382, w: 0.36599815}
+  m_LocalPosition: {x: 0.039, y: 0.04, z: 0.051}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3090712776861137891}
+  m_Father: {fileID: 7973315105461481096}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 120, y: 50, z: 180}
 --- !u!1 &934335486624447969
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +889,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3242657109966111638}
-  - {fileID: 5433984669772375305}
   m_Father: {fileID: 8489485524058675248}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1098,6 +1097,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8456624608410614411}
+  - {fileID: 5433984669772375305}
   m_Father: {fileID: 223933264250014881}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1287,7 +1287,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7677570209084713808}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 300, y: 300, z: 300}
   m_ConstrainProportionsScale: 0
@@ -1303,7 +1303,7 @@ Transform:
   - {fileID: 3913059288391327266}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &209419719499382278
 Animator:
   serializedVersion: 5
@@ -1313,11 +1313,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7677570209084713808}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 9287f3dfc54bce84992db51bd9c66ab4, type: 3}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 876776f7a3c4f514590fbd20dc9f25e8, type: 3}
+  m_Controller: {fileID: 9100000, guid: f05676bda39a9d94fa5391fb514a15c6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1336,6 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1b498198e1f864b84a7a0bdb5e4082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!1 &7895334820297286283
 GameObject:
   m_ObjectHideFlags: 0

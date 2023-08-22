@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerParameters
   m_EditorClassIdentifier: 
   _speed: 10
-  _minHealthPoints: 10
+  _minHealthPoints: 10000

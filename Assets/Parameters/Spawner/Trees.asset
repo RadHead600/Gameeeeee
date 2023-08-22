@@ -25,5 +25,8 @@ MonoBehaviour:
   - _spawnPrefab: {fileID: 1218347679047942, guid: fa6105287f77b1240a0017f7d23434c2,
       type: 3}
     _chance: 50
-  _minCount: 3
-  _maxCount: 4
+  _maxCountObjects: 4
+  _minCountObjects: 3
+  _reduceReloadingTime: 0
+  _maxReloadingTime: 3.5
+  _minReloadingTime: 1.5

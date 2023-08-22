@@ -9,12 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adfcca4ddb934ba4e8678168c55e0125, type: 3}
+  m_Script: {fileID: 11500000, guid: 4905a460a836924499ad51b752ed9dba, type: 3}
   m_Name: Enemies
   m_EditorClassIdentifier: 
   _spawnPrefabs:
   - _spawnPrefab: {fileID: 3618466196957971877, guid: 763560e8e8d7e8748a408dad1e62f7c4,
       type: 3}
     _chance: 100
-  _minCount: 4
-  _maxCount: 5
+  _maxCountObjects: 10
+  _minCountObjects: 4
+  _reduceReloadingTime: 20
+  _maxReloadingTime: 3.5
+  _minReloadingTime: 3
+  _minWaves: 2
+  _numLevelForAddWaves: 2
+  _increaseEnemies: 20

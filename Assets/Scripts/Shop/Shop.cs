@@ -12,32 +12,12 @@ public class Shop : MonoBehaviour
     private const string _isEquipText = "Equip";
     private int _lastEquipedButton;
 
+    public ShopParameters ShopParameters => _shopParameters;
+
     private void Awake()
     {
-        if (_shopParameters.Items.Count > 3)
-        {
-            SaveParameters.skinsBought = new bool[_shopParameters.Items.Count];
-            SaveParameters.skinsBought[0] = true;
-            SaveParameters.skinsBought[3] = true;
-            CreateItemCards();
-            UnlockItems(SaveParameters.skinsBought);
-            Equip(SaveParameters.skinEquip);
-        }
-        else
-        {
-            SaveParameters.weaponsBought = new bool[_shopParameters.Items.Count];
-            SaveParameters.weaponsBought[0] = true;
-            SaveParameters.weaponsBought[2] = true;
-            CreateItemCards();
-            UnlockItems(SaveParameters.weaponsBought);
-            Equip(SaveParameters.weaponEquip);
-        }
-        SaveParameters.golds += 100000;
-        SaveParameters.gems += 100000;
-    }
-
-    private void Start()
-    {
+        CreateItemCards();
+        gameObject.SetActive(false);
     }
 
     private void CreateItemCards()

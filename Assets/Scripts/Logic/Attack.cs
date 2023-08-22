@@ -30,8 +30,12 @@ public class Attack : MonoBehaviour
 
     private IEnumerator AttackCoroutine()
     {
+        if (_weapon == null)
+            _weapon = GetComponentsInChildren<Weapon>()[0];
         IsAttack = true;
         yield return new WaitForSeconds(_weapon.TimerBulletDelay);
+        if (!_weapon.isActiveAndEnabled)
+            yield break;
         _weapon.Attack();
         IsAttack = false;
         _attackCoroutine = null;

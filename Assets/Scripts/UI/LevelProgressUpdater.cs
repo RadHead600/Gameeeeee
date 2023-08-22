@@ -2,49 +2,43 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelProgressUpdater : MonoBehaviour
+public class LevelProgressUpdater : Singleton<LevelProgressUpdater>
 {
     [SerializeField] private Image _progressIndicator;
     [SerializeField] private TextMeshProUGUI _levelNumText;
-    [SerializeField] private LevelParameters _levelParameters;
+    [SerializeField] private Canvas _upgradeCanvas;
 
-    private int _countEnemiesOnLevel;
-    private int _countKillOnLevel;
+    private int _countKillsOnLevel;
 
-    public int LevelSet { get; set; }
-
-    public int CountKillOnLevel { 
-        get { return _countKillOnLevel; }
+    public int CountKillsOnLevel 
+    {
+        get { return _countKillsOnLevel; }
         set
         {
-            _countKillOnLevel = value;
-            float progressValue = ((float)_countKillOnLevel / (float)_countEnemiesOnLevel);
-            UpdateProgressIndicator(progressValue);
-        } 
+            _countKillsOnLevel = value;
+            UpdateProgressIndicator(_countKillsOnLevel);
+        }
     }
+    public int RequiredNumberOfKills { get; set; }
 
     private void Start()
     {
-        _countEnemiesOnLevel = _levelParameters.NumEnenmiesOnFirstLvl;
-        UpdateProgressIndicator(0);
         UpdateLevelNum(0);
     }
 
-    public void UpdateProgressIndicator(float value)
+    private void UpdateProgressIndicator(float value)
     {
-        _progressIndicator.fillAmount = value;
+        _progressIndicator.fillAmount = value / RequiredNumberOfKills;
         if (_progressIndicator.fillAmount >= 1)
-            UpdateLevelNum(LevelSet++);
+            UpdateLevelNum(++SaveParameters.passedLevel);
     }
 
-    public void UpdateLevelNum(int num)
+    private void UpdateLevelNum(int num)
     {
         _levelNumText.text = num.ToString();
-        if (num == 0)
-            return;
-        float per = ((float)_levelParameters.NumEnemiesPerLvlPercentage / 100);
-        _countEnemiesOnLevel = _countEnemiesOnLevel + (int)((float)_countEnemiesOnLevel * per);
-        _countKillOnLevel = 0;
+        CountKillsOnLevel = 0;
+        if (num > 0)
+            _upgradeCanvas.gameObject.SetActive(true);
         UpdateProgressIndicator(0);
     }
 }
