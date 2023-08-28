@@ -6,9 +6,10 @@ public class PlayerController : Unit
 
     protected PlayerParameters PlayerParameters => _playerParameters;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Speed = _playerParameters.Speed;
-        HealthPoints = _playerParameters.MinHealthPoints;
+        Health = _playerParameters.MinHealthPoints;
     }
 }

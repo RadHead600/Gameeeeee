@@ -2,14 +2,29 @@ using System;
 
 public class UpgradeAddWallHealthPoints : Upgrade
 {
-    private void OnEnable()
+    private void Start()
     {
-        LastValue = UnitUpgrade.HealthPoints.ToString();
+        UnitUpgrade.OnHealthChange += LastValueUpdate;
+        LastValueUpdate(UnitUpgrade.Health);
     }
 
     public override void Activate()
     {
-        UnitUpgrade.HealthPoints += Convert.ToInt32(Parameters);
-        LastValue = UnitUpgrade.HealthPoints.ToString();
+        base.Activate();
+        if (SaveParameters.UpgradePoints - CostUpgrade >= 0)
+        {
+            SaveParameters.UpgradePoints -= CostUpgrade;
+            UnitUpgrade.AddHealth(Convert.ToInt32(Parameters));
+        }
+    }
+
+    public void LastValueUpdate(int amount)
+    {
+        LastValue = amount.ToString();
+    }
+
+    public void OnDestroy()
+    {
+        UnitUpgrade.OnHealthChange -= LastValueUpdate;
     }
 }

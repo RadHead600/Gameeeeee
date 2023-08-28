@@ -1,18 +1,12 @@
-﻿using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ProtectiveWall : Unit
 {
     [SerializeField] private UnitParameters _unitParameters;
 
-    private void Awake()
+    protected override void Awake()
     {
-        HealthPoints = _unitParameters.MinHpWall;
-    }
-
-    public override void Die()
-    {
-        if (HealthPoints <= 0)
-            Destroy(gameObject);
+        base.Awake();
+        Health = _unitParameters.MinHpWall;
     }
 }

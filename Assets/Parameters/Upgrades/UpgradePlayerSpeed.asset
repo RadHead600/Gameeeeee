@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c62decbd0566f4287d236e138b75a0, type: 3}
   m_Name: UpgradePlayerSpeed
   m_EditorClassIdentifier: 
-  _minValue: 0.3
-  _maxValue: 0.8
-  _name: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+  _value: 0.1
+  _minCost: 1

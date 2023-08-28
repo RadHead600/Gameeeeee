@@ -281,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1b498198e1f864b84a7a0bdb5e4082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
 --- !u!1 &1050195635812046817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,6 +1016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 302309471427512939}
+  - component: {fileID: 1203421325278913339}
   m_Layer: 5
   m_Name: Hand
   m_TagString: Untagged
@@ -1039,6 +1039,18 @@ Transform:
   m_Father: {fileID: 2536232039719470871}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 120, y: 63.969, z: 176.957}
+--- !u!114 &1203421325278913339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992837544232416067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7a5cd8c251b8a4aad2014e60944b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4119772395895286542
 GameObject:
   m_ObjectHideFlags: 0

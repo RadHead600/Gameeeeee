@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 4);
+        Destroy(gameObject, 7);
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
         bool isEncountered = Physics.OverlapSphere(transform.position, 0.2f, blocks).Length > 0.8F;
         if (other.GetComponent<Unit>() != null && isEncountered)
         {
-            other.GetComponent<Unit>().ReceiveDamage(Damage);
+            other.GetComponent<Unit>().TakeDamage(Damage);
             Destroy(gameObject);
         }
 

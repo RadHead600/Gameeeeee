@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemies
   m_EditorClassIdentifier: 
   _spawnPrefabs:
-  - _spawnPrefab: {fileID: 3618466196957971877, guid: 763560e8e8d7e8748a408dad1e62f7c4,
+  - _spawnPrefab: {fileID: 147776806618312461, guid: 763560e8e8d7e8748a408dad1e62f7c4,
       type: 3}
     _chance: 100
   _maxCountObjects: 10
@@ -24,3 +24,5 @@ MonoBehaviour:
   _minWaves: 2
   _numLevelForAddWaves: 2
   _increaseEnemies: 20
+  _timeToKillInSeconds: 3
+  _additionalTime: 1.5

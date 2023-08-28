@@ -1,29 +1,24 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Upgrade : MonoBehaviour
 {
     [SerializeField] private UpgradesParameters _upgradesParameters;
     [SerializeField] private Unit _unitUpgrade;
 
-    protected UpgradesParameters UpgradesParameters => _upgradesParameters;
     public object Parameters { get; protected set; }
     public Unit UnitUpgrade => _unitUpgrade;
     public string LastValue { get; set; }
+    public int CostUpgrade { get; set; }
 
-    private void Start()
+    private void Awake()
     {
-        SetRandomParameters();
-    }
-
-    public void SetRandomParameters()
-    {
-        Parameters = Math.Round(UnityEngine.Random.Range(UpgradesParameters.MinValue, UpgradesParameters.MaxValue), 2);
+        CostUpgrade = _upgradesParameters.MinCost;
+        Parameters = _upgradesParameters.Value;
     }
 
     public virtual void Activate()
     {
-        throw new Exception("Activation is not set!");
     }
 }

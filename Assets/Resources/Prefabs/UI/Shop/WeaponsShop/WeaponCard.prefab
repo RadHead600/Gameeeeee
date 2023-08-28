@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemButton: {fileID: 6331344590070688402}
+  _buttonText: {fileID: 688488461298056184}
   _costText: {fileID: 1414749734975594754}
   _nameText: {fileID: 6514438374294871568}
   _moneyImage: {fileID: 273711833141114741}
@@ -709,6 +710,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 495c05e97ce2d48f29ed71af576ab9e6, type: 3}
+--- !u!114 &688488461298056184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 459524976158953048, guid: 495c05e97ce2d48f29ed71af576ab9e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1148012307310179744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &688488461759914736 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 459524975697090384, guid: 495c05e97ce2d48f29ed71af576ab9e6,

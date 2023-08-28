@@ -1,11 +1,10 @@
-using TMPro;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
     [SerializeField] private ShopParameters _shopParameters;
     [SerializeField] private ShopItemCard _itemCard;
-    [SerializeField] private GameObject _itemsPanel;
+    [SerializeField] private ItemsPanel _itemsPanel;
     [SerializeField] private PlayerItemUpdate _character;
 
     private const string _isEquipedText = "Equipped";
@@ -17,6 +16,10 @@ public class Shop : MonoBehaviour
     private void Awake()
     {
         CreateItemCards();
+    }
+
+    private void Start()
+    {
         gameObject.SetActive(false);
     }
 
@@ -47,8 +50,8 @@ public class Shop : MonoBehaviour
     public void Equip(int itemNum)
     {
         _character.SetItem(_shopParameters.Items[itemNum], itemNum);
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[_lastEquipedButton].ItemButton.interactable = true;
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[itemNum].ItemButton.interactable = false;
+        _itemsPanel.ShopItemCards[_lastEquipedButton].ItemButton.interactable = true;
+        _itemsPanel.ShopItemCards[itemNum].ItemButton.interactable = false;
         ChangeItemPanelButtonText(_lastEquipedButton, _isEquipText);
         ChangeItemPanelButtonText(itemNum, _isEquipedText);
         _lastEquipedButton = itemNum;
@@ -66,27 +69,39 @@ public class Shop : MonoBehaviour
 
     private void BuyItem(int itemNum)
     {
-        int money = _shopParameters.Items[itemNum].MoneyType == ItemMoneyType.Gold ? SaveParameters.golds : SaveParameters.gems;
-        if (money < _shopParameters.Items[itemNum].ItemCost)
+        int money = IsMoneyIsGoldType(itemNum) ? SaveParameters.Golds : SaveParameters.Gems;
+        int cost = _shopParameters.Items[itemNum].ItemCost;
+        if (money < cost)
             return;
-
-        money -= _shopParameters.Items[itemNum].ItemCost;
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[itemNum].ItemButton.onClick.RemoveAllListeners();
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[itemNum].ItemButton.onClick.AddListener(() => Equip(itemNum));
+        if (IsMoneyIsGoldType(itemNum))
+        {
+            SaveParameters.Golds -= cost;
+        }
+        else
+        {
+            SaveParameters.Gems -= cost;
+        }
+        _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.RemoveAllListeners();
+        _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.AddListener(() => Equip(itemNum));
         Unlockitem(itemNum, _isEquipText);
+    }
+
+    private bool IsMoneyIsGoldType(int itemNum)
+    {
+        return _shopParameters.Items[itemNum].MoneyType == ItemMoneyType.Gold;
     }
 
     private void Unlockitem(int itemNum, string buttonText)
     {
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[itemNum].CostText.alpha = 0;
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[itemNum].MoneyImage.color = new Color(0, 0, 0, 0);
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[itemNum].ItemButton.onClick.RemoveAllListeners();
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[itemNum].ItemButton.onClick.AddListener(() => Equip(itemNum));
+        _itemsPanel.ShopItemCards[itemNum].CostText.alpha = 0;
+        _itemsPanel.ShopItemCards[itemNum].MoneyImage.color = new Color(0, 0, 0, 0);
+        _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.RemoveAllListeners();
+        _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.AddListener(() => Equip(itemNum));
         ChangeItemPanelButtonText(itemNum, buttonText);
     }
 
     private void ChangeItemPanelButtonText(int itemNum, string text)
     {
-        _itemsPanel.GetComponentsInChildren<ShopItemCard>()[itemNum].ItemButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        _itemsPanel.ShopItemCards[itemNum].ButtonText.text = text;
     }
 }

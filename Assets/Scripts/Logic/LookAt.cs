@@ -7,14 +7,18 @@ public class LookAt : MonoBehaviour
     [SerializeField] private Attack _unitAttack;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private UnitParameters _unitParameters;
-    [SerializeField] private float minTriggerDistance;
+    [SerializeField] private float _minTriggerDistance;
+    [SerializeField] private SphereCollider _sphereCollider;
 
-    private SphereCollider _sphereCollider;
+    private GameObject _triggerObject;
+    private Tween _tween;
+    private Vector3 _lookAt;
 
     private void Awake()
     {
-        _sphereCollider = GetComponent<SphereCollider>();
-        _sphereCollider.radius = minTriggerDistance;
+        _lookAt = Vector3.zero;
+        _tween.SetAutoKill(false);
+        _sphereCollider.radius = _minTriggerDistance;
         _sphereCollider.isTrigger = true;
     }
 
@@ -22,13 +26,30 @@ public class LookAt : MonoBehaviour
     {
         if ((1 << other.gameObject.layer) != _layerMask.value)
             return;
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, transform.forward);
-        Physics.Raycast(ray, out hit);
-        Debug.DrawLine(ray.origin, hit.point, Color.red);
-        Vector3 lookAt = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
-        transform.DOLookAt(lookAt, _unitParameters.DirectionTime);
+        if (_lookAt == Vector3.zero)
+            _lookAt = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+        if (_triggerObject != null && _tween != null && _tween.active)
+        {
+            _lookAt = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+            return;
+        }
+        _tween = transform.DODynamicLookAt(_lookAt, _unitParameters.DirectionTime);
+        Debug.DrawLine(transform.position, _lookAt, Color.red);
+
+        _triggerObject = other.gameObject;
         if (_unitAttack.enabled)
             _unitAttack.Shoot();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (_triggerObject != null && _triggerObject.Equals(other.gameObject))
+            _triggerObject = null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, _minTriggerDistance);
     }
 }

@@ -94,6 +94,8 @@ MonoBehaviour:
   _deadZone: 0
   _background: {fileID: 8170153792821263258}
   _handle: {fileID: 8170153791961219456}
+  _baseRect: {fileID: 8170153791668043268}
+  _canvas: {fileID: 0}
 --- !u!1 &8170153791961219457
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ded10e1b2222648ad6077ea2fe14cf, type: 3}
   m_Name: UpgradePlayerHealthPoints
   m_EditorClassIdentifier: 
-  _minValue: 1
-  _maxValue: 3
-  _name: "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435 \u0438\u0433\u0440\u043E\u043A\u0430"
+  _value: 1
+  _minCost: 1

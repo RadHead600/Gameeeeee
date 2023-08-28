@@ -2,16 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class AIMoveTo : MonoBehaviour
 {
     [SerializeField] private float _trackingUpdateTime = 1.5f;
-    
-    private NavMeshAgent _agent;
+    [SerializeField] private NavMeshAgent _agent;
+
+    public NavMeshAgent NavMeshAgent => _agent;
 
     private void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
         StartCoroutine(GoToObject());
     }
 

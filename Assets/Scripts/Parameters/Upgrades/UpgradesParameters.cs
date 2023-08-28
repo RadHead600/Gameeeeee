@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class UpgradesParameters : ScriptableObject
 {
-    [SerializeField] private float _minValue;
-    [SerializeField] private float _maxValue;
+    [SerializeField] private float _value;
+    [SerializeField] private int _minCost;
 
-    public float MinValue => _minValue;
-    public float MaxValue => _maxValue;
+    public float Value => _value;
+    public int MinCost => _minCost;
 }

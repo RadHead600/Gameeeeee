@@ -1,3 +1,5 @@
+using System;
+
 public class UpgradeAddSpeed : Upgrade
 {
     private void OnEnable()
@@ -7,7 +9,12 @@ public class UpgradeAddSpeed : Upgrade
 
     public override void Activate()
     {
-        UnitUpgrade.Speed += float.Parse(Parameters.ToString());
-        LastValue = UnitUpgrade.Speed.ToString();
+        base.Activate();
+        if (SaveParameters.UpgradePoints - CostUpgrade >= 0)
+        {
+            SaveParameters.UpgradePoints -= CostUpgrade;
+            UnitUpgrade.Speed += float.Parse(Parameters.ToString());
+            LastValue = UnitUpgrade.Speed.ToString();
+        }
     }
 }

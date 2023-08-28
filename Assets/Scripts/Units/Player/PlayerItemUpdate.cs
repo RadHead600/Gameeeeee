@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerItemUpdate : MonoBehaviour
 {
-    private GameObject _hand;
+    private Hand _hand;
     private GameObject _weaponSave;
 
     private void Awake()
@@ -15,19 +15,17 @@ public class PlayerItemUpdate : MonoBehaviour
         if (item.ItemObject.GetComponent<Skin>() != null)
         {
             SetSkin(item);
-            SaveParameters.skinEquip = itemNum;
+            SaveParameters.SkinEquip = itemNum;
             return;
         }
 
         if (item.ItemObject.GetComponent<Weapon>() != null)
         {
-            if (_hand == null)
-                return;
-            foreach (Weapon weaponT in _hand.GetComponentsInChildren<Weapon>())
-                Destroy(weaponT.gameObject);
+            if (_hand.HandWeapon != null) 
+                Destroy(_hand.HandWeapon.gameObject);
 
             SetWeapon(item.ItemObject);
-            SaveParameters.weaponEquip = itemNum;
+            SaveParameters.WeaponEquip = itemNum;
             return;
         }
     }
@@ -36,12 +34,7 @@ public class PlayerItemUpdate : MonoBehaviour
     {
         if (item == null)
             return;
-        if (_hand == null)
-        {
-            SetHand(gameObject);
-            if (_hand == null)
-                return;
-        }
+        _hand.SetHandWeapon();
         GameObject weapon = Instantiate(item);
         weapon.transform.parent = _hand.transform;
         weapon.transform.localScale = Vector3.one;
@@ -62,7 +55,7 @@ public class PlayerItemUpdate : MonoBehaviour
         skin.transform.localRotation = skinT.localRotation;
         Destroy(skinT.gameObject);
         SetObjectLayer(skin, gameObject.layer);
-        SetHand(skin);
+        _hand = SetHand(skin);
         SetWeapon(_weaponSave);
     }
 
@@ -74,16 +67,8 @@ public class PlayerItemUpdate : MonoBehaviour
         }
     }
 
-    private void SetHand(GameObject gm)
+    private Hand SetHand(GameObject body)
     {
-        foreach (Transform bodyParts in gm.GetComponentsInChildren<Transform>())
-        {
-            if (bodyParts.name.ToLower() == "hand")
-            {
-                _hand = bodyParts.gameObject;
-                return;
-            }
-        }
-        Debug.Log("The hand was not added to the character's skin!");
+        return body.GetComponentInChildren<Hand>();
     }
 }
