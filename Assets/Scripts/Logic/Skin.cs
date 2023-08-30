@@ -3,16 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Skin : MonoBehaviour
 {
-    private Animator _animator;
+    [SerializeField] private RagdollController _ragdollController;
 
-    private void Start()
+    public Animator Animator { get; private set; }
+    public RagdollController RagdollController => _ragdollController;
+
+    private void Awake()
     {
-        if (_animator == null)
-            _animator = GetComponent<Animator>();
-        if (gameObject.GetComponentInParent<PlayerMovement>() != null)
-        {
-            PlayerMovement.Instance.Animator = _animator;
-            return;
-        }
+        if (Animator == null)
+            Animator = GetComponent<Animator>();
     }
 }

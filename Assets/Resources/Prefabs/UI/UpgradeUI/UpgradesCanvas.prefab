@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 1.0598015
+  m_AspectRatio: 1.0589684
 --- !u!1 &940353586562951634
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +638,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 940353586562951638}
     m_Modifications:
+    - target: {fileID: 1106880923420651745, guid: b11744f1fbe69b54e96983d2491b059b,
+        type: 3}
+      propertyPath: key
+      value: _upgrade_wall_hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826129267354408498, guid: b11744f1fbe69b54e96983d2491b059b,
+        type: 3}
+      propertyPath: key
+      value: _upgrade_player_hp
+      objectReference: {fileID: 0}
     - target: {fileID: 2132766110328096348, guid: b11744f1fbe69b54e96983d2491b059b,
         type: 3}
       propertyPath: m_Vertical
@@ -673,6 +683,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564137530191098685, guid: b11744f1fbe69b54e96983d2491b059b,
+        type: 3}
+      propertyPath: key
+      value: _upgrade_player_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4744748532019118571, guid: b11744f1fbe69b54e96983d2491b059b,
+        type: 3}
+      propertyPath: key
+      value: _upgrade_player_speed
+      objectReference: {fileID: 0}
     - target: {fileID: 6637987307521400151, guid: b11744f1fbe69b54e96983d2491b059b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -703,6 +723,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7482765574272279780, guid: b11744f1fbe69b54e96983d2491b059b,
+        type: 3}
+      propertyPath: key
+      value: _upgrade_player_hp
+      objectReference: {fileID: 0}
     - target: {fileID: 7788310326715883147, guid: b11744f1fbe69b54e96983d2491b059b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -732,6 +757,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202118241925661239, guid: b11744f1fbe69b54e96983d2491b059b,
+        type: 3}
+      propertyPath: key
+      value: _upgrade_wall_hp
       objectReference: {fileID: 0}
     - target: {fileID: 8759418233018775625, guid: b11744f1fbe69b54e96983d2491b059b,
         type: 3}

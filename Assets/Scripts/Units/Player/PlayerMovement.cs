@@ -8,12 +8,10 @@ public class PlayerMovement : PlayerController, IMove
     [SerializeField] private UnitParameters _unitParameters;
     [SerializeField] private Joystick _moveJoystick;
 
-    public Animator Animator { get; set; }
-    public static PlayerMovement Instance { get; private set; }
-
     private Vector3 _moveVector;
     private Vector3 _fwd, _right;
 
+    public static PlayerMovement Instance { get; private set; }
     public Vector3 MoveVector => _moveVector;
 
     protected override void Awake()
@@ -54,7 +52,7 @@ public class PlayerMovement : PlayerController, IMove
         {
             Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             movementDirection.Normalize();
-            Animator.SetFloat("Speed", movementDirection.magnitude);
+            Skin.Animator.SetFloat("Speed", movementDirection.magnitude);
             Direction(movementDirection);
         }
     }
@@ -74,7 +72,7 @@ public class PlayerMovement : PlayerController, IMove
         Vector3 upMovement = _fwd * Speed * Time.deltaTime * _moveJoystick.Direction.y;
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
         _characterController.Move(heading * Speed * Time.deltaTime);
-        Animator.SetFloat("Speed", heading.magnitude);
+        Skin.Animator.SetFloat("Speed", heading.magnitude);
         if (!Attack.IsAttack)
             Direction(heading);
     }

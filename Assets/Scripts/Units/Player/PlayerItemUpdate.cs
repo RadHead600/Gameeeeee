@@ -23,6 +23,12 @@ public class PlayerItemUpdate : MonoBehaviour
         {
             if (_hand.HandWeapon != null) 
                 Destroy(_hand.HandWeapon.gameObject);
+            else
+            {
+                _hand.SetHandWeapon();
+                if (_hand.HandWeapon != null)
+                    Destroy(_hand.HandWeapon.gameObject);
+            }
 
             SetWeapon(item.ItemObject);
             SaveParameters.WeaponEquip = itemNum;
@@ -34,7 +40,6 @@ public class PlayerItemUpdate : MonoBehaviour
     {
         if (item == null)
             return;
-        _hand.SetHandWeapon();
         GameObject weapon = Instantiate(item);
         weapon.transform.parent = _hand.transform;
         weapon.transform.localScale = Vector3.one;
@@ -42,6 +47,7 @@ public class PlayerItemUpdate : MonoBehaviour
         weapon.transform.localRotation = Quaternion.identity;
         _weaponSave = weapon;
         SetObjectLayer(weapon, gameObject.layer);
+        _hand.SetHandWeapon();
     }
 
     private void SetSkin(ShopItem item)

@@ -12,7 +12,6 @@ public class StatsUI : MonoBehaviour
         SaveParameters.ChangeGolds += UpdateGoldText;
         SaveParameters.ChangeGems += UpdateGemText;
         SaveParameters.ChangeUpgradePoints += UpdatePointsText;
-        SaveParameters.UpgradePoints = 8;
     }
 
     public void UpdateGoldText(int amount)

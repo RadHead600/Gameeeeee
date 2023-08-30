@@ -144,8 +144,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1 >> 20
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 50c12c23294124aa48490c44ac65a9e4, type: 2}
-  m_sharedMaterial: {fileID: 7746803525459343344, guid: 50c12c23294124aa48490c44ac65a9e4,
+  m_fontAsset: {fileID: 11400000, guid: 76303480566179b42b04a27bfc14256b, type: 2}
+  m_sharedMaterial: {fileID: -2226734868649690832, guid: 76303480566179b42b04a27bfc14256b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 5984381521969901175}
   - component: {fileID: 1488339488779158150}
   - component: {fileID: 1206282967935703361}
+  - component: {fileID: 8116259421957293480}
   m_Layer: 5
   m_Name: Upgrade_Bonus
   m_TagString: Untagged
@@ -280,8 +281,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Up healthpoints
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 50c12c23294124aa48490c44ac65a9e4, type: 2}
-  m_sharedMaterial: {fileID: 7746803525459343344, guid: 50c12c23294124aa48490c44ac65a9e4,
+  m_fontAsset: {fileID: 11400000, guid: 76303480566179b42b04a27bfc14256b, type: 2}
+  m_sharedMaterial: {fileID: -2226734868649690832, guid: 76303480566179b42b04a27bfc14256b,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -348,6 +349,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8116259421957293480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059054218929128655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0734f8d874c02446a0d63c92a34e565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 
 --- !u!1 &6719118176025980039
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +452,7 @@ GameObject:
   - component: {fileID: 7882666172007422231}
   - component: {fileID: 7408809217086759118}
   - component: {fileID: 7833363036772817101}
+  - component: {fileID: 1021498739597080446}
   m_Layer: 5
   m_Name: Upgrade_Card
   m_TagString: Untagged
@@ -520,6 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _infoText: {fileID: 2396148141878955896}
   _type: 0
+  _cardInformation: {fileID: 0}
 --- !u!114 &7833363036772817101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,3 +592,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1021498739597080446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7882666172007422229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0734f8d874c02446a0d63c92a34e565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 

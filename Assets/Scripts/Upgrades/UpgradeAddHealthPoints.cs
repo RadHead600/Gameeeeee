@@ -1,11 +1,25 @@
 using System;
+using System.Diagnostics;
 
 public class UpgradeAddHealthPoints : Upgrade
 {
     private void Start()
     {
-        UnitUpgrade.OnHealthChange += LastValueUpdate;
-        LastValueUpdate(UnitUpgrade.Health);
+        UnitUpgrade.OnHealthSet += LastValueUpdate;
+        SetUpgradeLevel();
+    }
+
+    protected override void SetUpgradeLevel()
+    {
+        UpgradeId = 0;
+        base.SetUpgradeLevel();
+        foreach (var upgrade in SaveParameters.UpgradesLevel)
+        {
+            if (upgrade.Item1 == UpgradeId)
+            {
+                UnitUpgrade.SetStaticHealth(UnitUpgrade.Health + Convert.ToInt32(Parameters) * upgrade.Item2);
+            }
+        }
     }
 
     public override void Activate()
@@ -14,7 +28,7 @@ public class UpgradeAddHealthPoints : Upgrade
         if (SaveParameters.UpgradePoints - CostUpgrade >= 0)
         {
             SaveParameters.UpgradePoints -= CostUpgrade;
-            UnitUpgrade.AddHealth(Convert.ToInt32(Parameters));
+            UnitUpgrade.SetStaticHealth(UnitUpgrade.Health + Convert.ToInt32(Parameters));
         }
     }
 
@@ -25,6 +39,6 @@ public class UpgradeAddHealthPoints : Upgrade
 
     public void OnDestroy()
     {
-        UnitUpgrade.OnHealthChange -= LastValueUpdate;
+        UnitUpgrade.OnHealthSet -= LastValueUpdate;
     }
 }

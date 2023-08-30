@@ -7,8 +7,8 @@ public class NoGamePlayObjectsUI : MonoBehaviour
 
     private void Start()
     {
-        StartGame.Instance.OnStartGame += ClosePanels;
-        LevelProgressUpdater.Instance.OnCompletedLevel += OpenPanels;
+        StartGameController.Instance.OnStartGame += ClosePanels;
+        LevelProgress.Instance.OnCompletedLevel += OpenPanels;
     }
 
     public void ClosePanels()
@@ -29,7 +29,7 @@ public class NoGamePlayObjectsUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        StartGame.Instance.OnStartGame -= ClosePanels;
-        LevelProgressUpdater.Instance.OnCompletedLevel -= OpenPanels;
+        StartGameController.Instance.OnStartGame -= ClosePanels;
+        LevelProgress.Instance.OnCompletedLevel -= OpenPanels;
     }
 }

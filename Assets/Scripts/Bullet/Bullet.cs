@@ -13,12 +13,12 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 7);
     }
 
-    void Update()
+    private void Update()
     {
         transform.Translate(Vector3.back * Speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         bool isEncountered = Physics.OverlapSphere(transform.position, 0.2f, blocks).Length > 0.8F;
         if (other.GetComponent<Unit>() != null && isEncountered)

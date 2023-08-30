@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: WeaponsShop
   m_EditorClassIdentifier: 
   _items:
-  - _itemName: Gun
+  - _wordsKeyTranslatorText: _weapon_gun
     _itemCost: 0
-    _moneyType: 0
+    _moneyType: 1
     _itemObject: {fileID: 9138899167454349965, guid: e6a17f64274387d4492791cb0655c492,
       type: 3}
-  - _itemName: M16
+  - _wordsKeyTranslatorText: _weapon_m16
     _itemCost: 150
-    _moneyType: 0
+    _moneyType: 1
     _itemObject: {fileID: 4842061898309870296, guid: b7b56afc506b6394795851100c5d48bc,
       type: 3}
-  - _itemName: AK-47
+  - _wordsKeyTranslatorText: _weapon_ak47
     _itemCost: 150
-    _moneyType: 0
+    _moneyType: 1
     _itemObject: {fileID: 6036677085639636068, guid: 9ad8da63155f1594483d2cd60f40f8da,
       type: 3}
   _moneySprites:

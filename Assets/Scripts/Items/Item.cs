@@ -9,4 +9,9 @@ public abstract class Item : MonoBehaviour
     public abstract void Active();
 
     public Tweener Tween { get; set; }
+
+    private void OnDestroy()
+    {
+        Tween.Kill();
+    }
 }

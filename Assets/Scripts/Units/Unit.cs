@@ -3,25 +3,42 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public float Speed { get; set; }
 
+    private int _staticHealthParameter;
     private int _health;
+    private float _speed;
+
+    public int StaticHealthParameter => _staticHealthParameter;
 
     public int Health
     {
         get => _health;
-        protected set
+        private set
         {
             _health = value;
             OnHealthChange?.Invoke(_health);
         }
     }
 
+    public float Speed
+    {
+
+        get => _speed;
+        private set
+        {
+            _speed = value;
+            OnSpeedSet?.Invoke(_speed);
+        }
+    }
+
     public event Action<int> OnHealthChange;
+    public event Action<int> OnHealthSet;
+    public event Action<float> OnSpeedSet;
+    public Action OnDeath;
 
     protected virtual void Awake()
     {
-        OnHealthChange += (h) => Die(); 
+        OnHealthChange += (h) => Die();
     }
 
     public virtual void TakeDamage(int amount)
@@ -36,10 +53,29 @@ public class Unit : MonoBehaviour
         Health += amount;
     }
 
+    public virtual void SetStaticHealth(int amount)
+    {
+        _staticHealthParameter = amount;
+        Health = _staticHealthParameter;
+        OnHealthSet?.Invoke(amount);
+    }
+
+    public virtual void SetStaticSpeed(float amount)
+    {
+        Speed = amount;
+        OnSpeedSet?.Invoke(amount);
+    }
+
     public virtual void Die()
     {
         if (Health > 0)
             return;
+        OnDeath?.Invoke();
         Destroy(gameObject);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        OnDeath = null;
     }
 }

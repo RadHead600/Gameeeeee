@@ -271,6 +271,9 @@ MonoBehaviour:
     type: 3}
   _itemsPanel: {fileID: 5520114854993487224}
   _character: {fileID: 0}
+  _isEquipedKeyText: _button_equiped
+  _isEquipKeyText: _button_equip
+  _shopType: 1
 --- !u!1 &874646462501843928
 GameObject:
   m_ObjectHideFlags: 0

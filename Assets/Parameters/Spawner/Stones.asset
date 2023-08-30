@@ -25,5 +25,5 @@ MonoBehaviour:
   _maxCountObjects: 4
   _minCountObjects: 3
   _reduceReloadingTime: 0
-  _maxReloadingTime: 3
-  _minReloadingTime: 2
+  _maxReloadingTime: 5
+  _minReloadingTime: 3.5

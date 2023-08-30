@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private WeaponParameters _weaponParameters;
     [SerializeField] private GameObject _posAttack;
 
@@ -19,19 +20,18 @@ public class Weapon : MonoBehaviour
         try
         {
             if (_weaponParameters.Bullet == null)
-            {
-            }
+                return;
+            Bullet newBullet = Instantiate(_weaponParameters.Bullet, _posAttack.transform.position, _posAttack.transform.rotation);
+
+            newBullet.Speed = _weaponParameters.AttackSpeed;
+            newBullet.Damage = _weaponParameters.AttackDamage;
+            TimerBulletDelay = _weaponParameters.AttackDelay;
+            _audioSource.PlayOneShot(_audioSource.clip);
         }
         catch
         {
             Debug.Log("Bullet is null.");
             return;
         }
-
-        Bullet newBullet = Instantiate(_weaponParameters.Bullet, _posAttack.transform.position, _posAttack.transform.rotation);
-
-        newBullet.Speed = _weaponParameters.AttackSpeed;
-        newBullet.Damage = _weaponParameters.AttackDamage;
-        TimerBulletDelay = _weaponParameters.AttackDelay;
     }
 }

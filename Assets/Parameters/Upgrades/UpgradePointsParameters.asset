@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 906a65f7d4db6d34faa6329ef560b9f2, type: 3}
   m_Name: UpgradePointsParameters
   m_EditorClassIdentifier: 
-  _timesToGem:
+  _timesToPoints:
   - 0.7
   - 0.3
   - 0
-  _numOfGems: 1
+  _numOfPoints: 1

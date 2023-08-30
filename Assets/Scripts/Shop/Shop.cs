@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -6,9 +7,10 @@ public class Shop : MonoBehaviour
     [SerializeField] private ShopItemCard _itemCard;
     [SerializeField] private ItemsPanel _itemsPanel;
     [SerializeField] private PlayerItemUpdate _character;
-
-    private const string _isEquipedText = "Equipped";
-    private const string _isEquipText = "Equip";
+    [SerializeField] private string _isEquipedKeyText;
+    [SerializeField] private string _isEquipKeyText;
+    [SerializeField] private ShopType _shopType;
+    
     private int _lastEquipedButton;
 
     public ShopParameters ShopParameters => _shopParameters;
@@ -40,7 +42,7 @@ public class Shop : MonoBehaviour
             objectDemonstration.transform.localPosition = Vector3.zero;
             objectDemonstration.transform.localScale = new Vector3(_shopParameters.Items[i].ItemObject.transform.localScale.x, _shopParameters.Items[i].ItemObject.transform.localScale.y, _shopParameters.Items[i].ItemObject.transform.localScale.z);
             card.CostText.text = _shopParameters.Items[i].ItemCost.ToString();
-            card.NameText.text = _shopParameters.Items[i].ItemName.ToString();
+            card.TextTranslator.key = _shopParameters.Items[i].WordsKeyTranslatorText;
             Sprite moneySprite = _shopParameters.MoneySprites[((int)_shopParameters.Items[i].MoneyType)];
             if (moneySprite != null)
                 card.MoneyImage.sprite = moneySprite;
@@ -52,18 +54,25 @@ public class Shop : MonoBehaviour
         _character.SetItem(_shopParameters.Items[itemNum], itemNum);
         _itemsPanel.ShopItemCards[_lastEquipedButton].ItemButton.interactable = true;
         _itemsPanel.ShopItemCards[itemNum].ItemButton.interactable = false;
-        ChangeItemPanelButtonText(_lastEquipedButton, _isEquipText);
-        ChangeItemPanelButtonText(itemNum, _isEquipedText);
+        ChangeItemPanelButtonText(_lastEquipedButton, _isEquipKeyText);
+        ChangeItemPanelButtonText(itemNum, _isEquipedKeyText);
         _lastEquipedButton = itemNum;
+        switch (_shopType)
+        {
+            case ShopType.Skin:
+                SaveParameters.SkinEquip = itemNum;
+                break;
+            case ShopType.Weapon:
+                SaveParameters.WeaponEquip = itemNum;
+            break;
+        }
     }
 
-    public void UnlockItems(bool[] items)
+    public void UnlockItems(List<int> items)
     {
-        for (int i = 0; i < items.Length; i++)
+        foreach (int itemNum in items)
         {
-            if (items[i] == false)
-                continue;
-            Unlockitem(i, _isEquipText);
+            Unlockitem(itemNum, _isEquipKeyText);
         }
     }
 
@@ -74,16 +83,21 @@ public class Shop : MonoBehaviour
         if (money < cost)
             return;
         if (IsMoneyIsGoldType(itemNum))
-        {
             SaveParameters.Golds -= cost;
-        }
         else
-        {
             SaveParameters.Gems -= cost;
+        switch (_shopType)
+        {
+            case ShopType.Skin:
+                SaveParameters.SkinsBought.Add(itemNum);
+                break;
+            case ShopType.Weapon:
+                SaveParameters.WeaponsBought.Add(itemNum);
+                break;
         }
         _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.RemoveAllListeners();
         _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.AddListener(() => Equip(itemNum));
-        Unlockitem(itemNum, _isEquipText);
+        Unlockitem(itemNum, _isEquipKeyText);
     }
 
     private bool IsMoneyIsGoldType(int itemNum)
@@ -102,6 +116,13 @@ public class Shop : MonoBehaviour
 
     private void ChangeItemPanelButtonText(int itemNum, string text)
     {
-        _itemsPanel.ShopItemCards[itemNum].ButtonText.text = text;
+        _itemsPanel.ShopItemCards[itemNum].ButtonKeyText.key = text;
+        _itemsPanel.ShopItemCards[itemNum].ButtonKeyText.ReTranslate();
     }
+}
+
+public enum ShopType
+{
+    Skin,
+    Weapon
 }

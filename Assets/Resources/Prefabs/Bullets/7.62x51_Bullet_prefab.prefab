@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6175017846618036683}
   - component: {fileID: 128501150964627446}
   - component: {fileID: 5197183557310608311}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 7.62x51_Bullet_No_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: -7893171825308226376}
   - component: {fileID: 5124555533928663399}
   - component: {fileID: -6012024943786873741}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 7.62x51_Bullet_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 9198954229151401072}
   - component: {fileID: 8991004741386658050}
   - component: {fileID: 9030886536241314573}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 7.62x51_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

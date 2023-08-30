@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public static class SaveParameters
 {
@@ -58,7 +59,6 @@ public static class SaveParameters
             ChangeWeaponEquip?.Invoke(_weaponEquip);
         }
     }
-    public static bool[] WeaponsBought { get; set; }
 
     public static int SkinEquip
     {
@@ -69,7 +69,13 @@ public static class SaveParameters
             ChangeSkinEquip?.Invoke(_skinEquip);
         }
     }
-    public static bool[] SkinsBought { get; set; }
+
+    public static List<int> WeaponsBought { get; set; }
+
+    public static List<int> SkinsBought { get; set; }
+
+    // Id Upgrade, level upgrade 
+    public static List<(int, int)> UpgradesLevel { get; set; }
 
     public static event Action<int> ChangeGolds;
     public static event Action<int> ChangeGems;
