@@ -12,7 +12,7 @@ public class UpgradeAddWallHealthPoints : Upgrade
     {
         UpgradeId = 2;
         base.SetUpgradeLevel();
-        foreach (var upgrade in SaveParameters.UpgradesLevel)
+        foreach (var upgrade in GameInformation.Instance.UpgradesLevel)
         {
             if (upgrade.Item1 == UpgradeId)
             {
@@ -24,9 +24,9 @@ public class UpgradeAddWallHealthPoints : Upgrade
     public override void Activate()
     {
         base.Activate();
-        if (SaveParameters.UpgradePoints - CostUpgrade >= 0)
+        if (GameInformation.Instance.UpgradePoints - CostUpgrade >= 0)
         {
-            SaveParameters.UpgradePoints -= CostUpgrade;
+            GameInformation.Instance.UpgradePoints -= CostUpgrade;
             UnitUpgrade.SetStaticHealth(UnitUpgrade.Health + Convert.ToInt32(Parameters));
         }
     }

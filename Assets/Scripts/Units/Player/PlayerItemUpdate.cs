@@ -15,7 +15,7 @@ public class PlayerItemUpdate : MonoBehaviour
         if (item.ItemObject.GetComponent<Skin>() != null)
         {
             SetSkin(item);
-            SaveParameters.SkinEquip = itemNum;
+            GameInformation.Instance.SkinEquip = itemNum;
             return;
         }
 
@@ -31,7 +31,7 @@ public class PlayerItemUpdate : MonoBehaviour
             }
 
             SetWeapon(item.ItemObject);
-            SaveParameters.WeaponEquip = itemNum;
+            GameInformation.Instance.WeaponEquip = itemNum;
             return;
         }
     }

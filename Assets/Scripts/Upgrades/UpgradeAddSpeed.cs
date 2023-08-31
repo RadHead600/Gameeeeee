@@ -10,7 +10,7 @@ public class UpgradeAddSpeed : Upgrade
     {
         UpgradeId = 1;
         base.SetUpgradeLevel();
-        foreach (var upgrade in SaveParameters.UpgradesLevel)
+        foreach (var upgrade in GameInformation.Instance.UpgradesLevel)
         {
             if (upgrade.Item1 == UpgradeId)
             {
@@ -22,9 +22,9 @@ public class UpgradeAddSpeed : Upgrade
     public override void Activate()
     {
         base.Activate();
-        if (SaveParameters.UpgradePoints - CostUpgrade >= 0)
+        if (GameInformation.Instance.UpgradePoints - CostUpgrade >= 0)
         {
-            SaveParameters.UpgradePoints -= CostUpgrade;
+            GameInformation.Instance.UpgradePoints -= CostUpgrade;
             UnitUpgrade.SetStaticSpeed(UnitUpgrade.Speed + float.Parse(Parameters.ToString()));
             LastValue = UnitUpgrade.Speed.ToString();
         }

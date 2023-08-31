@@ -4856,7 +4856,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8406868122288417721}
-  - component: {fileID: 7496921299292765268}
   m_Layer: 5
   m_Name: PointsUpgradeStatus
   m_TagString: Untagged
@@ -4887,19 +4886,6 @@ RectTransform:
   m_AnchoredPosition: {x: -640, y: -0.11847}
   m_SizeDelta: {x: 1279.9994, y: 1456.857}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7496921299292765268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8406868122288417718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ceda0b76f9b564986b0058330055ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timerSlider: {fileID: 8406868123076142812}
 --- !u!1 &8406868122304523798
 GameObject:
   m_ObjectHideFlags: 0

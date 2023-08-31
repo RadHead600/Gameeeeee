@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 602287501299310563}
   - component: {fileID: 602287501299310564}
   - component: {fileID: 602287501299310565}
+  - component: {fileID: 426596459}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602287501299310566}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25.597229, y: -0.0301283, z: 24.855322}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,15 +48,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shops:
-  - {fileID: 8271584806147730954, guid: ca559ad0fc3972e499869cb38a76bd40, type: 3}
-  - {fileID: 6158619217680163806, guid: fb98edf69aa766245bc50e26a1423a20, type: 3}
-  _enemySpawner:
-    _spawner: {fileID: 2792758905355366113, guid: af0b8bf77a664a34a87f9db81f04b6cb,
-      type: 3}
-    _spawnerParameters: {fileID: 11400000, guid: e7b29951e3bdea44385a77b0dc88cd31,
-      type: 2}
-  _objectsSpawner: []
+  - {fileID: 0}
+  - {fileID: 0}
+  _enemySpawners:
+  - {fileID: 0}
+  _spawners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _pointsTimer: {fileID: 0}
+  _startTerrain: {fileID: 0}
 --- !u!114 &602287501299310564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,3 +91,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradePointsParameters: {fileID: 11400000, guid: 87d0c83b8935a0649a68c978cce3b842,
     type: 2}
+--- !u!114 &426596459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602287501299310566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d46913ff576b4444a39ee58db738c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

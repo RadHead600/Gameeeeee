@@ -13,25 +13,25 @@ MonoBehaviour:
   m_Name: MainMenuTranslates
   m_EditorClassIdentifier: 
   languages:
-  - Eng
-  - Rus
-  - Tur
+  - en
+  - ru
+  - tr
   words:
   - phrases:
-    - langName: Eng
+    - langName: en
       phrase: Guest
-    - langName: Rus
+    - langName: ru
       phrase: "\u0413\u043E\u0441\u0442\u044C"
-    - langName: Tur
+    - langName: tr
       phrase: Konuk
     key: _button_guest
     hide: 0
   - phrases:
-    - langName: Eng
+    - langName: en
       phrase: Login
-    - langName: Rus
+    - langName: ru
       phrase: "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u0442\u044C\u0441\u044F"
-    - langName: Tur
+    - langName: tr
       phrase: "Oturum a\xE7"
     key: _button_login
     hide: 0

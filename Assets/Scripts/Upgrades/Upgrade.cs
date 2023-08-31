@@ -18,8 +18,8 @@ public class Upgrade : MonoBehaviour
     {
         CostUpgrade = _upgradesParameters.MinCost;
         Parameters = _upgradesParameters.Value;
-        if (SaveParameters.UpgradesLevel == null)
-            SaveParameters.UpgradesLevel = new List<(int, int)>();
+        if (GameInformation.Instance.UpgradesLevel == null)
+            GameInformation.Instance.UpgradesLevel = new List<(int, int)>();
     }
 
     public virtual void Activate()
@@ -28,7 +28,7 @@ public class Upgrade : MonoBehaviour
 
     protected virtual void SetUpgradeLevel()
     {
-        if (SaveParameters.UpgradesLevel.Count < 3)
-            SaveParameters.UpgradesLevel.Add((UpgradeId, 1));
+        if (GameInformation.Instance.UpgradesLevel.Count < 3)
+            GameInformation.Instance.UpgradesLevel.Add((UpgradeId, 1));
     }
 }

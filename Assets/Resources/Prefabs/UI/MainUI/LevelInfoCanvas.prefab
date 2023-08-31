@@ -1629,18 +1629,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3731471087692169062}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1178644435952918532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5144213769723204816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a40091688afffe4b914835e58f9a5a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &983343791847509432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,6 +1642,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerSlider: {fileID: 5144213770008664506}
+--- !u!114 &1178644435952918532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5144213769723204816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a40091688afffe4b914835e58f9a5a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5144213769723204831 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8406868122288417721, guid: e38d819611f41044bbf3278545d965ea,

@@ -60,10 +60,10 @@ public class Shop : MonoBehaviour
         switch (_shopType)
         {
             case ShopType.Skin:
-                SaveParameters.SkinEquip = itemNum;
+                GameInformation.Instance.SkinEquip = itemNum;
                 break;
             case ShopType.Weapon:
-                SaveParameters.WeaponEquip = itemNum;
+                GameInformation.Instance.WeaponEquip = itemNum;
             break;
         }
     }
@@ -78,21 +78,21 @@ public class Shop : MonoBehaviour
 
     private void BuyItem(int itemNum)
     {
-        int money = IsMoneyIsGoldType(itemNum) ? SaveParameters.Golds : SaveParameters.Gems;
+        int money = IsMoneyIsGoldType(itemNum) ? GameInformation.Instance.Golds : GameInformation.Instance.Gems;
         int cost = _shopParameters.Items[itemNum].ItemCost;
         if (money < cost)
             return;
         if (IsMoneyIsGoldType(itemNum))
-            SaveParameters.Golds -= cost;
+            GameInformation.Instance.Golds -= cost;
         else
-            SaveParameters.Gems -= cost;
+            GameInformation.Instance.Gems -= cost;
         switch (_shopType)
         {
             case ShopType.Skin:
-                SaveParameters.SkinsBought.Add(itemNum);
+                GameInformation.Instance.SkinsBought.Add(itemNum);
                 break;
             case ShopType.Weapon:
-                SaveParameters.WeaponsBought.Add(itemNum);
+                GameInformation.Instance.WeaponsBought.Add(itemNum);
                 break;
         }
         _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.RemoveAllListeners();

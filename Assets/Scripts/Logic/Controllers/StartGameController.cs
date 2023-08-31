@@ -21,23 +21,25 @@ public class StartGameController : Singleton<StartGameController>
 
     private void SetPlayerParams()
     {
-        SaveParameters.SkinsBought = new List<int>
+        if (GameInformation.Instance.SkinsBought.Count == 0)
         {
-            0, 3
-        };
-        _shops[1].UnlockItems(SaveParameters.SkinsBought);
-        _shops[1].Equip(SaveParameters.SkinEquip);
+            GameInformation.Instance.SkinsBought = new List<int>
+            {
+                0
+            };
+        }
+        _shops[1].UnlockItems(GameInformation.Instance.SkinsBought);
+        _shops[1].Equip(GameInformation.Instance.SkinEquip);
 
-        SaveParameters.WeaponsBought = new List<int>
+        if (GameInformation.Instance.WeaponsBought.Count == 0)
         {
-            0
-        };
-        _shops[0].UnlockItems(SaveParameters.WeaponsBought);
-        _shops[0].Equip(SaveParameters.WeaponEquip);
-
-        SaveParameters.Golds = 100000;
-        SaveParameters.Gems = 100000;
-        SaveParameters.UpgradePoints = 4;
+            GameInformation.Instance.WeaponsBought = new List<int>
+            {
+                0
+            };
+        }
+        _shops[0].UnlockItems(GameInformation.Instance.WeaponsBought);
+        _shops[0].Equip(GameInformation.Instance.WeaponEquip);
     }
 
     public void StartLevel()

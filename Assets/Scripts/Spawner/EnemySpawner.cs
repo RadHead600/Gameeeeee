@@ -13,7 +13,7 @@ public class EnemySpawner : Spawner
 
     public override void StartSpawner()
     {
-        _enemiesReloadingTime = SpawnerParameters.MaxReloadingTime - Mathf.Pow(SaveParameters.PassedLevel, SpawnerParameters.ReduceReloadingTime);
+        _enemiesReloadingTime = SpawnerParameters.MaxReloadingTime - Mathf.Pow(GameInformation.Instance.PassedLevel, SpawnerParameters.ReduceReloadingTime);
         if (_enemiesReloadingTime < SpawnerParameters.MinReloadingTime)
             _enemiesReloadingTime = SpawnerParameters.MinReloadingTime;
         if (_spawnerCoroutine == null)
@@ -26,7 +26,7 @@ public class EnemySpawner : Spawner
         if (_objectsCount > parameters.MaxCountObjects)
             _objectsCount = parameters.MaxCountObjects;
         CreateObjects(_objectsCount, reloadingTime);
-        _wavesToPassed = parameters.MinWaves + (int)((float)SaveParameters.PassedLevel / (float)parameters.NumLevelForAddWaves);
+        _wavesToPassed = parameters.MinWaves + (int)((float)GameInformation.Instance.PassedLevel / (float)parameters.NumLevelForAddWaves);
         if (countWaves >= _wavesToPassed)
         {
             _spawnerCoroutine = null;

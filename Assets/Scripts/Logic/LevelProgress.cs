@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 
 public class LevelProgress : Singleton<LevelProgress>
 {
@@ -25,16 +24,16 @@ public class LevelProgress : Singleton<LevelProgress>
 
     private void Start()
     {
-        if (SaveParameters.PassedLevel == 0)
-            SaveParameters.PassedLevel = 1;
-        LevelProgressUI.Instance.UpdateLevelNumText(SaveParameters.PassedLevel);
+        if (GameInformation.Instance.PassedLevel == 0)
+            GameInformation.Instance.PassedLevel = 1;
+        LevelProgressUI.Instance.UpdateLevelNumText(GameInformation.Instance.PassedLevel);
         OnCompletedLevel += UpdateLevelParameters;
     }
 
     private void UpdateLevelParameters()
     {
         CountKillsOnLevel = 0;
-        LevelProgressUI.Instance.UpdateLevelNumText(++SaveParameters.PassedLevel);
+        LevelProgressUI.Instance.UpdateLevelNumText(++GameInformation.Instance.PassedLevel);
     }
 
     private void OnDestroy()

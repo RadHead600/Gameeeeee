@@ -64,7 +64,7 @@ public class Spawner : MonoBehaviour
 
     private float GetTime()
     {
-        return Random.Range(_spawnerParameters.MinReloadingTime, _spawnerParameters.MaxReloadingTime) - (Mathf.Pow(SaveParameters.PassedLevel, _spawnerParameters.ReduceReloadingTime));
+        return Random.Range(_spawnerParameters.MinReloadingTime, _spawnerParameters.MaxReloadingTime) - (Mathf.Pow(GameInformation.Instance.PassedLevel, _spawnerParameters.ReduceReloadingTime));
     }
 
     private void OnDestroy()

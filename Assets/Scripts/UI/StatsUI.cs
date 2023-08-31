@@ -9,9 +9,9 @@ public class StatsUI : MonoBehaviour
 
     private void Awake()
     {
-        SaveParameters.ChangeGolds += UpdateGoldText;
-        SaveParameters.ChangeGems += UpdateGemText;
-        SaveParameters.ChangeUpgradePoints += UpdatePointsText;
+        GameInformation.Instance.ChangeGolds += UpdateGoldText;
+        GameInformation.Instance.ChangeGems += UpdateGemText;
+        GameInformation.Instance.ChangeUpgradePoints += UpdatePointsText;
     }
 
     public void UpdateGoldText(int amount)
@@ -31,8 +31,8 @@ public class StatsUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveParameters.ChangeGolds -= UpdateGoldText;
-        SaveParameters.ChangeGems -= UpdateGemText;
-        SaveParameters.ChangeUpgradePoints -= UpdatePointsText;
+        GameInformation.Instance.ChangeGolds -= UpdateGoldText;
+        GameInformation.Instance.ChangeGems -= UpdateGemText;
+        GameInformation.Instance.ChangeUpgradePoints -= UpdatePointsText;
     }
 }

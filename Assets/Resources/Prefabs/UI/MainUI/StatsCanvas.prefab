@@ -228,6 +228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4014115897865479399, guid: edabbf6f14a6f45bc812e209ecb1acbc,
         type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4014115897865479399, guid: edabbf6f14a6f45bc812e209ecb1acbc,
+        type: 3}
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
@@ -447,6 +452,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Text_Gem_Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806913257366460606, guid: d257824c1f89f4ed8af9dc7efd24f761,
+        type: 3}
+      propertyPath: m_text
+      value: '0
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6806913257366460606, guid: d257824c1f89f4ed8af9dc7efd24f761,
         type: 3}
