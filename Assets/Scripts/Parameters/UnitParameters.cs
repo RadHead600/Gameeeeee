@@ -3,9 +3,9 @@
 [CreateAssetMenu(fileName = "UnitParameters", menuName = "CustomParameters/UnitParameters")]
 public class UnitParameters : ScriptableObject
 {
-    [SerializeField] private float _directionTime;
-    [SerializeField] private int _minHpWall;
+    [SerializeField] private float _minSpeed;
+    [SerializeField] private int _minHealth;
 
-    public float DirectionTime => _directionTime;
-    public int MinHpWall => _minHpWall;
+    public float MinSpeed => _minSpeed;
+    public int MinHealth => _minHealth;
 }

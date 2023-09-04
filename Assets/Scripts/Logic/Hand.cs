@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    public Weapon HandWeapon { get; private set; }
+    public Weapon Weapon { get; private set; }
 
     private void Start()
     {
-        SetHandWeapon();
+        Weapon = FindWeapon();
     }
 
-    public void SetHandWeapon()
+    public void SetHandWeapon(Weapon weapon)
     {
-        HandWeapon = GetWeapon();
+        Weapon = weapon;
     }
 
-    public Weapon GetWeapon()
+    public Weapon FindWeapon()
     {
         return GetComponentInChildren<Weapon>();
     }

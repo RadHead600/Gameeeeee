@@ -18,18 +18,24 @@ public class PickUpItemController : MonoBehaviour
         {
             Item item = collider.gameObject.GetComponent<Item>();
             item.gameObject.layer = 0;
-            item.Active();
             item.Tween.SetAutoKill(false);
             item.Tween = item.transform.DOMove(transform.position, _itemLiftingTime)
                 .OnUpdate(() =>
                 {
                     if ((item.transform.position - transform.position).sqrMagnitude <= _upItemRange)
                     {
+                        item.Active();
                         Destroy(item.gameObject);
                         return;
                     }
                     item.Tween.ChangeEndValue(transform.position, true);
                 });
+        }
+
+        if (colliders.Length == 0 && _magniteRange >= 100)
+        {
+            _magniteRange = 0;
+            GameInformation.OnInformationChange?.Invoke();
         }
     }
 }

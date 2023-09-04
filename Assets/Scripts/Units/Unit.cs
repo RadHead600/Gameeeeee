@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [SerializeField] private UnitParameters _unitParameters;
 
     private int _staticHealthParameter;
     private int _health;
     private float _speed;
 
     public int StaticHealthParameter => _staticHealthParameter;
+    public UnitParameters UnitParameters => _unitParameters;
 
     public int Health
     {

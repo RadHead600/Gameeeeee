@@ -3,6 +3,11 @@ using System.Diagnostics;
 
 public class UpgradeAddHealthPoints : Upgrade
 {
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     private void Start()
     {
         UnitUpgrade.OnHealthSet += LastValueUpdate;
@@ -11,25 +16,20 @@ public class UpgradeAddHealthPoints : Upgrade
 
     protected override void SetUpgradeLevel()
     {
-        UpgradeId = 0;
         base.SetUpgradeLevel();
-        foreach (var upgrade in GameInformation.Instance.UpgradesLevel)
-        {
-            if (upgrade.Item1 == UpgradeId)
-            {
-                UnitUpgrade.SetStaticHealth(UnitUpgrade.Health + Convert.ToInt32(Parameters) * upgrade.Item2);
-            }
-        }
+        UnitUpgrade.SetStaticHealth(UnitUpgrade.UnitParameters.MinHealth + Convert.ToInt32(Parameters) * Level);
+        OnActivate?.Invoke();
+        GameInformation.OnInformationChange?.Invoke();
     }
 
     public override void Activate()
     {
-        base.Activate();
-        if (GameInformation.Instance.UpgradePoints - CostUpgrade >= 0)
+        if (UpLevel())
         {
-            GameInformation.Instance.UpgradePoints -= CostUpgrade;
             UnitUpgrade.SetStaticHealth(UnitUpgrade.Health + Convert.ToInt32(Parameters));
+            OnActivate?.Invoke();
         }
+        base.Activate();
     }
 
     public void LastValueUpdate(int amount)
@@ -37,8 +37,9 @@ public class UpgradeAddHealthPoints : Upgrade
         LastValue = amount.ToString();
     }
 
-    public void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         UnitUpgrade.OnHealthSet -= LastValueUpdate;
     }
 }

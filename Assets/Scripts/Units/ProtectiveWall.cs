@@ -2,13 +2,12 @@
 
 public class ProtectiveWall : Unit
 {
-    [SerializeField] private UnitParameters _unitParameters;
     [SerializeField] private GameObject _playerStopObject;
 
     protected override void Awake()
     {
         base.Awake();
-        SetStaticHealth(_unitParameters.MinHpWall);
+        SetStaticHealth(UnitParameters.MinHealth);
         LevelProgress.Instance.OnCompletedLevel += ChangeStaticHealth;
         LevelProgress.Instance.OnCompletedLevel += ChangeGameObjectActive;
     }

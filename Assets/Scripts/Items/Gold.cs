@@ -8,7 +8,7 @@ public class Gold : Item
 
     public override void Active()
     {
-        GameInformation.Instance.Golds += _amountCurrency;
+        GameInformation.Instance.Information.Golds += _amountCurrency;
         Destroy(gameObject, _lifeTime);
     }
 }

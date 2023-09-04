@@ -25,6 +25,7 @@ public class TextTranslator : MonoBehaviour
         if (tmpT)
         {
             tmpT.text = LangsList.GetWord(key);
+            tmpT.font = LangsList.langs.translates.fonts[LangsList.currLang];
         }
         if (T)
         {

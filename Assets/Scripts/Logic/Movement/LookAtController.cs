@@ -6,9 +6,9 @@ using UnityEngine;
 public class LookAtController : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private UnitParameters _unitParameters;
-    [SerializeField] private float _minTriggerDistance;
     [SerializeField] private SphereCollider _sphereCollider;
+    [SerializeField] private float _directionTime;
+    [SerializeField] private float _minTriggerDistance;
 
     private GameObject _triggerObject;
     private Tween _tween;
@@ -38,7 +38,7 @@ public class LookAtController : MonoBehaviour
             _lookAt = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
             return;
         }
-        _tween = transform.DODynamicLookAt(_lookAt, _unitParameters.DirectionTime);
+        _tween = transform.DODynamicLookAt(_lookAt, _directionTime);
         Debug.DrawLine(transform.position, _lookAt, Color.red);
 
         _triggerObject = other.gameObject;

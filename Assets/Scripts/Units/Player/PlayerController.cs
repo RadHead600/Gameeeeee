@@ -11,6 +11,7 @@ public class PlayerController : Unit
     [SerializeField] private PickUpItemController _pickUpItem;
     [SerializeField] private LookAtController _lookAtController;
     [SerializeField] private AttackController _attack;
+    [SerializeField] private int _deathLayer;
 
     private RagdollController _ragdollController;
     private Skin _skin;
@@ -34,8 +35,8 @@ public class PlayerController : Unit
     {
         base.Awake();
         _startMagnitudeRange = _pickUpItem.MagniteRange;
-        SetStaticSpeed(_playerParameters.Speed);
-        SetStaticHealth(_playerParameters.MinHealthPoints);
+        SetStaticSpeed(_playerParameters.MinSpeed);
+        SetStaticHealth(_playerParameters.MinHealth);
         _skin = GetComponentInChildren<Skin>();
         LevelProgress.Instance.OnCompletedLevel += ChangeStaticHealth;
         LevelProgress.Instance.OnCompletedLevel += PickUpItems;
@@ -47,8 +48,11 @@ public class PlayerController : Unit
     {
         if (Health > 0)
             return;
-        if (_ragdollController = _skin.RagdollController)
+        if (_ragdollController = Skin.RagdollController)
+        {
             _ragdollController.EnablePhysics();
+            SetDeathLayer();
+        }
         _lookAtController.Tween.Kill();
         _lookAtController.enabled = false;
         StartCoroutine(RestartScene());
@@ -56,6 +60,16 @@ public class PlayerController : Unit
         OnDeath = null;
         this.enabled = false;
     }
+
+    private void SetDeathLayer()
+    {
+        gameObject.layer = _deathLayer;
+        foreach (var rb in _ragdollController.RagdollElements)
+        {
+            rb.gameObject.layer = _deathLayer;
+        }
+    }
+
 
     private void SetStandartMagniteRange()
     {

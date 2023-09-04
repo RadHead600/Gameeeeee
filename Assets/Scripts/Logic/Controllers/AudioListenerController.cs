@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AudioListenerController : MonoBehaviour
+public class AudioListenerController : Singleton<AudioListenerController>
 {
     public void ChangeAuidoListener()
     {
@@ -8,5 +8,10 @@ public class AudioListenerController : MonoBehaviour
             AudioListener.volume = 0;
         else
             AudioListener.volume = 1;
+    }
+
+    public  void SetAudioListerner(float value)
+    {
+        AudioListener.volume = value;
     }
 }

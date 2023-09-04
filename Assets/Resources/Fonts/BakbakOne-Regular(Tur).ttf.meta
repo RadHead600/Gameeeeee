@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e59c97e0536b6d742b36036f74f94617
+guid: c42aef77d2a0c7c4e83fc658d573a8d9
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Lilita One Rus
+  - Bakbak One
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

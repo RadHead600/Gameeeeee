@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Upgrade : MonoBehaviour
@@ -13,22 +13,55 @@ public class Upgrade : MonoBehaviour
     
     // Обязательно переуказать ID апгрейда
     public int UpgradeId { get; set; }
+    public int Level { get; set; }
 
-    private void Awake()
+    public Action OnActivate;
+
+    protected virtual void Awake()
     {
         CostUpgrade = _upgradesParameters.MinCost;
         Parameters = _upgradesParameters.Value;
-        if (GameInformation.Instance.UpgradesLevel == null)
-            GameInformation.Instance.UpgradesLevel = new List<(int, int)>();
+        if (GameInformation.Instance.Information.UpgradesLevel.Count - 1 < UpgradeId)
+        {
+            for (int i = GameInformation.Instance.Information.UpgradesLevel.Count - 1; i < UpgradeId; i++)
+            {
+                GameInformation.Instance.Information.UpgradesLevel.Add(0);
+            }
+            GameInformation.OnInformationChange?.Invoke();
+        }
+        ResetUpgradesPointsController.OnReset += ResetLevel;
+        ResetUpgradesPointsController.OnReset += SetUpgradeLevel;
+    }
+
+    protected bool UpLevel()
+    {
+        bool isLiquid = GameInformation.Instance.Information.UpgradePoints - CostUpgrade >= 0;
+        if (isLiquid)
+        {
+            GameInformation.Instance.Information.UpgradesLevel[UpgradeId] += 1;
+            GameInformation.Instance.Information.UpgradePoints -= CostUpgrade;
+            GameInformation.OnInformationChange?.Invoke();
+        }
+        return isLiquid;
     }
 
     public virtual void Activate()
     {
+        GameInformation.OnInformationChange?.Invoke();
     }
 
     protected virtual void SetUpgradeLevel()
     {
-        if (GameInformation.Instance.UpgradesLevel.Count < 3)
-            GameInformation.Instance.UpgradesLevel.Add((UpgradeId, 1));
+    }
+
+    protected void ResetLevel()
+    {
+        Level = 1;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        ResetUpgradesPointsController.OnReset -= ResetLevel;
+        ResetUpgradesPointsController.OnReset -= SetUpgradeLevel;
     }
 }

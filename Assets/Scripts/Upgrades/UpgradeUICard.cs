@@ -9,6 +9,7 @@ public class UpgradeUICard : MonoBehaviour
 
     private void Start()
     {
+        _cardInformation.OnActivate += UpdateInformation;
         UpdateInformation();
     }
 
@@ -25,6 +26,11 @@ public class UpgradeUICard : MonoBehaviour
     private double Sum()
     {
         return System.Convert.ToDouble(_cardInformation.LastValue) + System.Convert.ToDouble(_cardInformation.Parameters.ToString());
+    }
+
+    private void OnDestroy()
+    {
+        _cardInformation.OnActivate -= UpdateInformation;
     }
 }
 

@@ -2,36 +2,28 @@ using UnityEngine;
 
 public class PlayerItemUpdate : MonoBehaviour
 {
-    private Hand _hand;
-    private GameObject _weaponSave;
-
-    private void Awake()
-    {
-        SetHand(gameObject);
-    }
+    [SerializeField] private Skin _skin;
+    [SerializeField] private Hand _hand;
 
     public void SetItem(ShopItem item, int itemNum)
     {
         if (item.ItemObject.GetComponent<Skin>() != null)
         {
             SetSkin(item);
-            GameInformation.Instance.SkinEquip = itemNum;
+            GameInformation.Instance.Information.SkinEquip = itemNum;
+            GameInformation.OnInformationChange?.Invoke();
             return;
         }
 
         if (item.ItemObject.GetComponent<Weapon>() != null)
         {
-            if (_hand.HandWeapon != null) 
-                Destroy(_hand.HandWeapon.gameObject);
-            else
+            if (_hand.Weapon != null)
             {
-                _hand.SetHandWeapon();
-                if (_hand.HandWeapon != null)
-                    Destroy(_hand.HandWeapon.gameObject);
+                Destroy(_hand.Weapon.gameObject);
             }
-
             SetWeapon(item.ItemObject);
-            GameInformation.Instance.WeaponEquip = itemNum;
+            GameInformation.Instance.Information.WeaponEquip = itemNum;
+            GameInformation.OnInformationChange?.Invoke();
             return;
         }
     }
@@ -45,24 +37,28 @@ public class PlayerItemUpdate : MonoBehaviour
         weapon.transform.localScale = Vector3.one;
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
-        _weaponSave = weapon;
         SetObjectLayer(weapon, gameObject.layer);
-        _hand.SetHandWeapon();
+        _hand.SetHandWeapon(weapon.GetComponent<Weapon>());
     }
 
     private void SetSkin(ShopItem item)
     {
-        GameObject skin = Instantiate(item.ItemObject);
-        skin.transform.SetParent(gameObject.transform);
-        Transform skinT = gameObject.GetComponentInChildren<Skin>().transform;
-        skin.transform.localScale = skinT.localScale;
-        skin.transform.localPosition = skinT.localPosition;
-        skin.transform.position = skinT.position;
-        skin.transform.localRotation = skinT.localRotation;
-        Destroy(skinT.gameObject);
-        SetObjectLayer(skin, gameObject.layer);
-        _hand = SetHand(skin);
-        SetWeapon(_weaponSave);
+        Skin skin = item.ItemObject.GetComponent<Skin>();
+        ChangeClothes(skin);
+    }
+
+    private void ChangeClothes(Skin skin)
+    {
+        for (int i = 0; i < _skin.Clothes.Count; i++)
+        {
+            if (skin.Clothes.Count > i)
+            {
+                _skin.Clothes[i].sharedMesh = skin.Clothes[i].sharedMesh;
+                _skin.Clothes[i].sharedMaterials = skin.Clothes[i].sharedMaterials;
+            }
+            else
+                _skin.Clothes[i].sharedMesh = null;
+        }
     }
 
     private void SetObjectLayer(GameObject item, int layer)
@@ -71,10 +67,5 @@ public class PlayerItemUpdate : MonoBehaviour
         {
             obj.gameObject.layer = layer;
         }
-    }
-
-    private Hand SetHand(GameObject body)
-    {
-        return body.GetComponentInChildren<Hand>();
     }
 }

@@ -38,6 +38,11 @@ public class AIMoveTo : MonoBehaviour, IMove
     {
         StopCoroutine(_goToCoroutine);
         _agent.ResetPath();
+    }
+
+    public void StopScript()
+    {
+        StopMove();
         this.enabled = false;
     }
 }

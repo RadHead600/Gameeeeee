@@ -57,15 +57,6 @@ public class Shop : MonoBehaviour
         ChangeItemPanelButtonText(_lastEquipedButton, _isEquipKeyText);
         ChangeItemPanelButtonText(itemNum, _isEquipedKeyText);
         _lastEquipedButton = itemNum;
-        switch (_shopType)
-        {
-            case ShopType.Skin:
-                GameInformation.Instance.SkinEquip = itemNum;
-                break;
-            case ShopType.Weapon:
-                GameInformation.Instance.WeaponEquip = itemNum;
-            break;
-        }
     }
 
     public void UnlockItems(List<int> items)
@@ -78,26 +69,27 @@ public class Shop : MonoBehaviour
 
     private void BuyItem(int itemNum)
     {
-        int money = IsMoneyIsGoldType(itemNum) ? GameInformation.Instance.Golds : GameInformation.Instance.Gems;
+        int money = IsMoneyIsGoldType(itemNum) ? GameInformation.Instance.Information.Golds : GameInformation.Instance.Information.Gems;
         int cost = _shopParameters.Items[itemNum].ItemCost;
         if (money < cost)
             return;
         if (IsMoneyIsGoldType(itemNum))
-            GameInformation.Instance.Golds -= cost;
+            GameInformation.Instance.Information.Golds -= cost;
         else
-            GameInformation.Instance.Gems -= cost;
+            GameInformation.Instance.Information.Gems -= cost;
         switch (_shopType)
         {
             case ShopType.Skin:
-                GameInformation.Instance.SkinsBought.Add(itemNum);
+                GameInformation.Instance.Information.SkinsBought.Add(itemNum);
                 break;
             case ShopType.Weapon:
-                GameInformation.Instance.WeaponsBought.Add(itemNum);
+                GameInformation.Instance.Information.WeaponsBought.Add(itemNum);
                 break;
         }
         _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.RemoveAllListeners();
         _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.AddListener(() => Equip(itemNum));
         Unlockitem(itemNum, _isEquipKeyText);
+        GameInformation.OnInformationChange?.Invoke();
     }
 
     private bool IsMoneyIsGoldType(int itemNum)

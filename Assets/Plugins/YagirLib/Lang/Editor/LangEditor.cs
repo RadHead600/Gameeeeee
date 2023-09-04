@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System;
 using UnityEditor.SceneManagement;
+using TMPro;
 
 public class SaveLang {
 
@@ -211,7 +212,6 @@ public class LangEditor : EditorWindow
         else
         {
             GUILayout.Label("Languages List: ", EditorStyles.boldLabel, GUILayout.Width(100));
-
             var langs = LangsList.langs.translates.languages;
             var words = LangsList.langs.translates.words;
             for (int i = 0; i < langs.Count; i++)

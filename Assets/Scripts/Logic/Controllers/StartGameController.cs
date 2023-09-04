@@ -14,32 +14,36 @@ public class StartGameController : Singleton<StartGameController>
 
     private void Start()
     {
-        SetPlayerParams();
         _startTerrain.DisableScript();
         OnStartGame += _startTerrain.EnableScript;
     }
 
-    private void SetPlayerParams()
+    public void SetGameParams()
     {
-        if (GameInformation.Instance.SkinsBought.Count == 0)
-        {
-            GameInformation.Instance.SkinsBought = new List<int>
-            {
-                0
-            };
-        }
-        _shops[1].UnlockItems(GameInformation.Instance.SkinsBought);
-        _shops[1].Equip(GameInformation.Instance.SkinEquip);
+        if (GameInformation.Instance.Information.PassedLevel == 0)
+            GameInformation.Instance.Information.PassedLevel = 1;
 
-        if (GameInformation.Instance.WeaponsBought.Count == 0)
+        if (GameInformation.Instance.Information.SkinsBought == null)
         {
-            GameInformation.Instance.WeaponsBought = new List<int>
+            GameInformation.Instance.Information.SkinsBought = new List<int>
             {
                 0
             };
         }
-        _shops[0].UnlockItems(GameInformation.Instance.WeaponsBought);
-        _shops[0].Equip(GameInformation.Instance.WeaponEquip);
+
+        _shops[1].UnlockItems(GameInformation.Instance.Information.SkinsBought);
+        _shops[1].Equip(GameInformation.Instance.Information.SkinEquip);
+
+        if (GameInformation.Instance.Information.WeaponsBought == null)
+        {
+            GameInformation.Instance.Information.WeaponsBought = new List<int>
+            {
+                0
+            };
+        }
+        _shops[0].UnlockItems(GameInformation.Instance.Information.WeaponsBought);
+        _shops[0].Equip(GameInformation.Instance.Information.WeaponEquip);
+        LevelProgressUI.Instance.UpdateLevelNumText(GameInformation.Instance.Information.PassedLevel);
     }
 
     public void StartLevel()

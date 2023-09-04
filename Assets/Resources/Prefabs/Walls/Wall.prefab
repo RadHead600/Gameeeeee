@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01de8cb0f7cfd8240ba21dce544af9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitParameters: {fileID: 11400000, guid: a920ec7245ef72d4e913d975c03f5b9e, type: 2}
+  _unitParameters: {fileID: 11400000, guid: c4830e56016581b47b6f33ab1c18c647, type: 2}
   _playerStopObject: {fileID: 2586405265305743467, guid: f8020bd05a1871847b10bc221582b135,
     type: 3}
 --- !u!208 &8380858962701412256

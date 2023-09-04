@@ -10,7 +10,6 @@ public class Enemy : Unit
     [SerializeField] private int _minNumOfCoins;
     [SerializeField] private List<DropItemParameters> _itemsParameters;
     [SerializeField] private ItemDropController _dropItem;
-    [SerializeField] private EnemiesParameters _enemiesParameters;
     [SerializeField] private LookAtController _lookAtController;
     [SerializeField] private AttackController _attack;
     [SerializeField] private int _deathLayer;
@@ -25,7 +24,7 @@ public class Enemy : Unit
     protected override void Awake()
     {
         base.Awake();
-        SetStaticHealth(_enemiesParameters.MinHealth);
+        SetStaticHealth(UnitParameters.MinHealth);
         OnDeath += DisableScripts;
 
         _lookAtController.OnLook += _attack.Shoot;
@@ -40,8 +39,10 @@ public class Enemy : Unit
         DropItems();
 
         if (_ragdollController = _skin.RagdollController)
+        {
             _ragdollController.EnablePhysics();
-        SetDeathLayer();
+            SetDeathLayer();
+        }
         _lookAtController.Tween.Kill();
         OnDeath?.Invoke();
         Destroy(gameObject, 3);

@@ -6,154 +6,192 @@ using UnityEngine;
 [Serializable]
 public class Information
 {
-    public int golds;
-    public int gems;
-    public int passedLevel;
-    public int upgradePoints;
-    public int weaponEquip;
-    public int skinEquip;
-    public List<int> weaponsBought;
-    public List<int> skinsBought;
+    [SerializeField] private int _golds;
+    [SerializeField] private int _gems;
+    [SerializeField] private int _passedLevel;
+    [SerializeField] private int _upgradePoints;
+    [SerializeField] private int _weaponEquip;
+    [SerializeField] private int _skinEquip;
+    [SerializeField] private List<int> _weaponsBought = new List<int>() { 0 };
+    [SerializeField] private List<int> _skinsBought = new List<int>() { 0 };
     // Id Upgrade, level upgrade 
-    public List<(int, int)> upgradesLevel;
-}
+    [SerializeField] private List<int> _upgradesLevel = new List<int>() { 0, 0, 0 };
 
-public class GameInformation : Singleton<GameInformation>
-{
-    private Information _information;
-    public int Golds 
-    { 
-        get { return _information.golds; }
-        set 
-        {
-            _information.golds = value; 
-            ChangeGolds?.Invoke(_information.golds);
-            Save();
-        } 
-    }
-
-    public int Gems 
+    public int Golds
     {
-        get { return _information.gems; }
+        get { return _golds; }
         set
         {
-            _information.gems = value;
-            ChangeGems?.Invoke(_information.gems);
-            Save();
+            _golds = value;
+            GameInformation.Instance.ChangeGolds?.Invoke(_golds);
+        }
+    }
+
+    public int Gems
+    {
+        get { return _gems; }
+        set
+        {
+            _gems = value;
+            GameInformation.Instance.ChangeGems?.Invoke(_gems);
         }
     }
 
     public int PassedLevel
     {
-        get { return _information.passedLevel; }
+        get { return _passedLevel; }
         set
         {
-            _information.passedLevel = value;
-            ChangePassedLevel?.Invoke(_information.passedLevel);
-            Save();
+            _passedLevel = value;
+            GameInformation.Instance.ChangePassedLevel?.Invoke(_passedLevel);
         }
     }
 
     public int UpgradePoints
     {
-        get { return _information.upgradePoints; }
+        get { return _upgradePoints; }
         set
         {
-            _information.upgradePoints = value;
-            ChangeUpgradePoints?.Invoke(_information.upgradePoints);
-            Save();
+            _upgradePoints = value;
+            GameInformation.Instance.ChangeUpgradePoints?.Invoke(_upgradePoints);
         }
     }
 
     public int WeaponEquip
     {
-        get { return _information.weaponEquip; }
+        get { return _weaponEquip; }
         set
         {
-            _information.weaponEquip = value;
-            ChangeWeaponEquip?.Invoke(_information.weaponEquip);
-            Save();
+            _weaponEquip = value;
+            GameInformation.Instance.ChangeWeaponEquip?.Invoke(_weaponEquip);
         }
     }
 
     public int SkinEquip
     {
-        get { return _information.skinEquip; }
+        get { return _skinEquip; }
         set
         {
-            _information.skinEquip = value;
-            Save();
-            ChangeSkinEquip?.Invoke(_information.skinEquip);
+            _skinEquip = value;
+            GameInformation.Instance.ChangeSkinEquip?.Invoke(_skinEquip);
         }
     }
 
     public List<int> WeaponsBought
     {
-        get { return _information.weaponsBought; }
+        get { return _weaponsBought; }
         set
         {
-            _information.weaponsBought = value;
-            Save();
+            _weaponsBought = value;
         }
     }
 
     public List<int> SkinsBought
     {
-        get { return _information.skinsBought; }
+        get { return _skinsBought; }
         set
         {
-            _information.skinsBought = value;
-            Save();
+            _skinsBought = value;
         }
     }
 
     // Id Upgrade, level upgrade 
-    public List<(int, int)> UpgradesLevel
+    public List<int> UpgradesLevel
     {
-        get { return _information.upgradesLevel; }
+        get { return _upgradesLevel; }
         set
         {
-            _information.upgradesLevel = value;
-            Save();
+            _upgradesLevel = value;
         }
     }
 
-    public event Action<int> ChangeGolds;
-    public event Action<int> ChangeGems;
-    public event Action<int> ChangePassedLevel;
-    public event Action<int> ChangeUpgradePoints;
-    public event Action<int> ChangeWeaponEquip;
-    public event Action<int> ChangeSkinEquip;
+    public void AllInvoke()
+    {
+        GameInformation.Instance.ChangeGolds?.Invoke(_golds);
+        GameInformation.Instance.ChangeGems?.Invoke(_gems);
+        GameInformation.Instance.ChangePassedLevel?.Invoke(_passedLevel);
+        GameInformation.Instance.ChangeUpgradePoints?.Invoke(_upgradePoints);
+        GameInformation.Instance.ChangeWeaponEquip?.Invoke(_weaponEquip);
+        GameInformation.Instance.ChangeSkinEquip?.Invoke(_skinEquip);
+    }
+
+    public override string ToString()
+    {
+        return "Golds: " + _golds + "\n" +
+            "_gems: " + _gems + "\n" +
+            "_passedLevel: " + _passedLevel + "\n" +
+            "_upgradePoints: " + _upgradePoints + "\n" +
+            "_weaponEquip: " + _weaponEquip + "\n" +
+            "_skinEquip: " + _skinEquip + "\n" +
+            "_weaponsBought count: " + _weaponsBought.Count + "\n" +
+            "_skinsBought count: " + _skinsBought.Count + "\n" +
+            "_upgradesLevel count: " + _upgradesLevel.Count + "\n";
+    }
+}
+
+public class GameInformation : Singleton<GameInformation>
+{
+    private Information _information;
+
+    public Information Information
+    {
+        get { return _information; }
+        private set
+        {
+            _information = value;
+        }
+    }
 
     [DllImport("__Internal")]
-    private static extern void SaveExtern(string data);
+    public static extern void SaveExtern(string data);
     [DllImport("__Internal")]
-    private static extern void LoadExtern();
+    public static extern void LoadExtern();
+
+    public static Action OnInformationChange;
+
+    public Action<int> ChangeGolds;
+    public Action<int> ChangeGems;
+    public Action<int> ChangePassedLevel;
+    public Action<int> ChangeUpgradePoints;
+    public Action<int> ChangeWeaponEquip;
+    public Action<int> ChangeSkinEquip;
 
     protected override void Awake()
     {
         base.Awake();
-#if UNITY_WEBGL && !UNITY_EDITOR
-        LoadExtern();
-#endif
-    }
-
-    private void Start()
-    {
-        if (_information == null)
-            _information = new Information();
     }
 
     public void SetInformationFromJSON(string info)
     {
         _information = JsonUtility.FromJson<Information>(info);
+        StartGameController.Instance.SetGameParams();
+        _information.AllInvoke();
     }
 
     public void Save()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
+        if (MainMenuController.isOnline)
+        {
+            GameParametersLoaderUI.Instance.AddStack();
+            string json = JsonUtility.ToJson(_information);
+            SaveExtern(json);
+        }
+        else
+        {
+            string json = JsonUtility.ToJson(_information);
+            PlayerPrefs.SetString("information", json);
+            PlayerPrefs.Save();
+        }
+#elif UNITY_2019_1_OR_NEWER
         string json = JsonUtility.ToJson(_information);
-        SaveExtern(json);
+        PlayerPrefs.SetString("information", json);
+        PlayerPrefs.Save();
 #endif
+    }
+
+    private void OnDestroy()
+    {
+        OnInformationChange -= Save;
     }
 }

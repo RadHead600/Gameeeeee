@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : PlayerController, IMove
 {
     [SerializeField] private CharacterController _characterController;
-    [SerializeField] private UnitParameters _unitParameters;
     [SerializeField] private Joystick _moveJoystick;
+    [SerializeField] private float _directionTime;
 
     private Vector3 _moveVector;
     private Vector3 _fwd, _right;
@@ -34,9 +34,12 @@ public class PlayerMovement : PlayerController, IMove
 
     private void Update()
     {
-        Move();
+        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
+            Move();
         if (_moveJoystick != null)
             JoystickMove();
+        if (!_characterController.isGrounded)
+            _characterController.Move(new Vector3(0, -0.1f, 0));
     }
 
     public void Move()
@@ -47,12 +50,12 @@ public class PlayerMovement : PlayerController, IMove
         _moveVector.z = Input.GetAxis("Vertical") * Speed;
 
         _characterController.Move(_moveVector * Time.deltaTime);
+        Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        movementDirection.Normalize();
+        Skin.Animator.SetFloat("Speed", movementDirection.magnitude);
 
         if (!Attack.IsAttack)
         {
-            Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            movementDirection.Normalize();
-            Skin.Animator.SetFloat("Speed", movementDirection.magnitude);
             Direction(movementDirection);
         }
     }
@@ -80,6 +83,6 @@ public class PlayerMovement : PlayerController, IMove
     private void Direction(Vector3 movementDirection)
     {
         if (movementDirection != Vector3.zero)
-            transform.DOLookAt(movementDirection + transform.position, _unitParameters.DirectionTime);
+            transform.DOLookAt(movementDirection + transform.position, _directionTime);
     }
 }

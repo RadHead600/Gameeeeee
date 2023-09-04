@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8de1d7d8281484044a20ad33e58ce7f1, type: 3}
-  m_Name: UnitParameters
+  m_Name: WallParameters
   m_EditorClassIdentifier: 
-  _directionTime: 0.3
-  _minTriggerDistance: 5
-  _minHpWall: 5
+  _minSpeed: 0
+  _minHealth: 5

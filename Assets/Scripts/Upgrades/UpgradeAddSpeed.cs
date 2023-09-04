@@ -1,5 +1,12 @@
 public class UpgradeAddSpeed : Upgrade
 {
+    protected override void Awake()
+    {
+        UpgradeId = 1;
+        base.Awake();
+        Level = GameInformation.Instance.Information.UpgradesLevel[UpgradeId];
+    }
+
     private void Start()
     {
         UnitUpgrade.OnSpeedSet += LastValueUpdate;
@@ -8,25 +15,17 @@ public class UpgradeAddSpeed : Upgrade
 
     protected override void SetUpgradeLevel()
     {
-        UpgradeId = 1;
         base.SetUpgradeLevel();
-        foreach (var upgrade in GameInformation.Instance.UpgradesLevel)
-        {
-            if (upgrade.Item1 == UpgradeId)
-            {
-                UnitUpgrade.SetStaticSpeed(UnitUpgrade.Speed + float.Parse(Parameters.ToString()) * upgrade.Item2);
-            }
-        }
+        UnitUpgrade.SetStaticSpeed(UnitUpgrade.UnitParameters.MinSpeed + float.Parse(Parameters.ToString()) * Level);
+        OnActivate?.Invoke();
     }
 
     public override void Activate()
     {
-        base.Activate();
-        if (GameInformation.Instance.UpgradePoints - CostUpgrade >= 0)
+        if (UpLevel())
         {
-            GameInformation.Instance.UpgradePoints -= CostUpgrade;
             UnitUpgrade.SetStaticSpeed(UnitUpgrade.Speed + float.Parse(Parameters.ToString()));
-            LastValue = UnitUpgrade.Speed.ToString();
+            OnActivate?.Invoke();
         }
     }
 
@@ -35,8 +34,9 @@ public class UpgradeAddSpeed : Upgrade
         LastValue = amount.ToString();
     }
 
-    public void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         UnitUpgrade.OnSpeedSet -= LastValueUpdate;
     }
 }

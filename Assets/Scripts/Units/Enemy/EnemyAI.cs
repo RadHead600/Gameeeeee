@@ -7,11 +7,12 @@ public class EnemyAI : Enemy
 
     public NavMeshAgent NavMeshAgent => _aIMoveTo.NavMeshAgent;
     private bool isJump;
+    private bool isAttack;
 
     protected override void Awake()
     {
         base.Awake();
-        OnDeath += _aIMoveTo.StopMove;
+        OnDeath += _aIMoveTo.StopScript;
     }
 
     private void Start()
@@ -29,16 +30,23 @@ public class EnemyAI : Enemy
         }
         if (Attack.IsAttack)
         {
+            _aIMoveTo.StopMove();
             Skin.Animator.SetFloat("Speed", 0);
+            isAttack = true;
             return;
         }
         Skin.Animator.SetFloat("Speed", NavMeshAgent.speed);
+        if (isAttack)
+        {
+            _aIMoveTo.Move();
+            isAttack = false;
+        }
     }
 
 
     protected override void OnDestroy()
     {
-        OnDeath -= _aIMoveTo.StopMove;
+        OnDeath -= _aIMoveTo.StopScript;
         base.OnDestroy();
     }
 }

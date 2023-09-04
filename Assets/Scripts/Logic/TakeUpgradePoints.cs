@@ -11,9 +11,10 @@ public class TakeUpgradePoints : Singleton<TakeUpgradePoints>
         {
             if (gemTime <= timer.RemainingTimeInProcent)
             {
-                GameInformation.Instance.UpgradePoints += _upgradePointsParameters.NumOfPoints;
+                GameInformation.Instance.Information.UpgradePoints += _upgradePointsParameters.NumOfPoints;
             }
         }
+        GameInformation.OnInformationChange?.Invoke();
     }
 
     private void OnDestroy()

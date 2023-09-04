@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 7225002437391334960}
   - component: {fileID: 7225002437391334961}
   m_Layer: 5
-  m_Name: UICanvas
+  m_Name: ButtonsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,10 +700,10 @@ RectTransform:
   m_Father: {fileID: 7225002437809517018}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -35, y: -35}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 0.7871482, y: 0.8894794}
+  m_AnchorMax: {x: 0.9720001, y: 0.98200005}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &7784978679647798479
 CanvasRenderer:
@@ -823,7 +823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9e48fc43b772941ae966557f486486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioListener: {fileID: 0}
 --- !u!114 &7680589974632844560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,7 +870,7 @@ RectTransform:
   m_Father: {fileID: 7784978679647798477}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.3}
+  m_AnchorMin: {x: 0.2, y: 0.2}
   m_AnchorMax: {x: 0.8, y: 0.9}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -906,7 +905,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 901d64fc6ad9d44799c2ad0fd4f182d2, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1322,7 +1321,7 @@ PrefabInstance:
     - target: {fileID: 5931897139241930671, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
       propertyPath: m_fontSize
-      value: 50
+      value: 25.25
       objectReference: {fileID: 0}
     - target: {fileID: 5931897139241930671, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
@@ -1394,22 +1393,22 @@ PrefabInstance:
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.97200006
+      value: 0.9720001
       objectReference: {fileID: 0}
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.156
+      value: 0.22800002
       objectReference: {fileID: 0}
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.6504091
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.07863183
+      value: 0.16131417
       objectReference: {fileID: 0}
     - target: {fileID: 5931897139715106988, guid: 73eb15f94061e4bd38866ca49cb4c242,
         type: 3}
