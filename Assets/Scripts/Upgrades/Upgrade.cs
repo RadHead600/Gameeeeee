@@ -11,7 +11,6 @@ public class Upgrade : MonoBehaviour
     public string LastValue { get; set; }
     public int CostUpgrade { get; set; }
     
-    // Обязательно переуказать ID апгрейда
     public int UpgradeId { get; set; }
     public int Level { get; set; }
 
@@ -21,11 +20,16 @@ public class Upgrade : MonoBehaviour
     {
         CostUpgrade = _upgradesParameters.MinCost;
         Parameters = _upgradesParameters.Value;
-        if (GameInformation.Instance.Information.UpgradesLevel.Count - 1 < UpgradeId)
+
+        int changeCount = 1;
+
+         int levelImprovement = 0;
+        
+        if (GameInformation.Instance.Information.UpgradesLevel.Count - changeCount < UpgradeId)
         {
-            for (int i = GameInformation.Instance.Information.UpgradesLevel.Count - 1; i < UpgradeId; i++)
+            for (int i = GameInformation.Instance.Information.UpgradesLevel.Count - changeCount; i < UpgradeId; i++)
             {
-                GameInformation.Instance.Information.UpgradesLevel.Add(0);
+                GameInformation.Instance.Information.UpgradesLevel.Add(levelImprovement);
             }
             GameInformation.OnInformationChange?.Invoke();
         }
@@ -35,10 +39,15 @@ public class Upgrade : MonoBehaviour
 
     protected bool UpLevel()
     {
-        bool isLiquid = GameInformation.Instance.Information.UpgradePoints - CostUpgrade >= 0;
+        int zero = 0;
+
+        int preferredLevelImprovement = 1;
+    
+        bool isLiquid = GameInformation.Instance.Information.UpgradePoints - CostUpgrade >= zero;
+        
         if (isLiquid)
         {
-            GameInformation.Instance.Information.UpgradesLevel[UpgradeId] += 1;
+            GameInformation.Instance.Information.UpgradesLevel[UpgradeId] += preferredLevelImprovement;
             GameInformation.Instance.Information.UpgradePoints -= CostUpgrade;
             GameInformation.OnInformationChange?.Invoke();
         }
