@@ -34,11 +34,13 @@ public class PointsTimer : Singleton<PointsTimer>
     {
         yield return new WaitForSeconds(1);
         _time -= 1;
+        
         if (_time <= 0)
         {
             OnTimerUpdate?.Invoke(0);
             yield break;
         }
+        
         OnTimerUpdate?.Invoke(GetPercentOfTotalTime());
         _timerCoroutine = StartCoroutine(TimerUpdate());
     }
