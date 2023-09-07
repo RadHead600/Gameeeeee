@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79efb2fa6346404bb8970bd8dbefb88, type: 3}
   m_Name: PlayerParameters
   m_EditorClassIdentifier: 
-  _minSpeed: 10
+  _minSpeed: 7.5
   _minHealth: 3
   _timeBeforRestartScene: 3

@@ -131,9 +131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7dd343ee3fd5fb44adf2de4048a3b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blocks:
+  _blocks:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 512
+  _enemies:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &5124555533928663399
 BoxCollider:
   m_ObjectHideFlags: 0

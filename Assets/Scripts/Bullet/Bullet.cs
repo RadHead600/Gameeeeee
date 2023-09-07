@@ -2,7 +2,8 @@
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private LayerMask blocks;
+    [SerializeField] private LayerMask _blocks;
+    [SerializeField] private LayerMask _enemies;
 
     public float Speed { get; set; }
     public int Damage { get; set; }
@@ -20,14 +21,15 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        bool isEncountered = Physics.OverlapSphere(transform.position, 0.2f, blocks).Length > 0.8F;
-        if (other.GetComponent<Unit>() != null && isEncountered)
+        bool isEnemy = Physics.OverlapSphere(transform.position, 0.2f, _enemies).Length > 0.8F;
+        if (other.GetComponent<Unit>() != null && isEnemy)
         {
             other.GetComponent<Unit>().TakeDamage(Damage);
             Destroy(gameObject);
         }
 
-        if (isEncountered)
+        bool isBlock = Physics.OverlapSphere(transform.position, 0.2f, _blocks).Length > 0.8F;
+        if (isBlock)
             Destroy(gameObject);
     }
 }

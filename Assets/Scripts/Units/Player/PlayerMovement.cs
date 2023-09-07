@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using static Cinemachine.CinemachineOrbitalTransposer;
 
 public class PlayerMovement : PlayerController, IMove
 {
@@ -34,9 +35,9 @@ public class PlayerMovement : PlayerController, IMove
 
     private void Update()
     {
-        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             Move();
-        if (_moveJoystick != null)
+        else if (_moveJoystick != null)
             JoystickMove();
         if (!_characterController.isGrounded)
             _characterController.Move(new Vector3(0, -0.1f, 0));
@@ -50,13 +51,12 @@ public class PlayerMovement : PlayerController, IMove
         _moveVector.z = Input.GetAxis("Vertical") * Speed;
 
         _characterController.Move(_moveVector * Time.deltaTime);
-        Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        movementDirection.Normalize();
-        Skin.Animator.SetFloat("Speed", movementDirection.magnitude);
+        _moveVector.Normalize();
+        Skin.Animator.SetFloat("Speed", _moveVector.magnitude);
 
         if (!Attack.IsAttack)
         {
-            Direction(movementDirection);
+            Direction(_moveVector);
         }
     }
 
