@@ -35,14 +35,15 @@ public class EnemyAI : Enemy
             isAttack = true;
             return;
         }
+        
         Skin.Animator.SetFloat("Speed", NavMeshAgent.speed);
+        
         if (isAttack)
         {
             _aIMoveTo.Move();
             isAttack = false;
         }
     }
-
 
     protected override void OnDestroy()
     {
