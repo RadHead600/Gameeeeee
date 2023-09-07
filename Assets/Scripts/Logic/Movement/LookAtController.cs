@@ -38,6 +38,7 @@ public class LookAtController : MonoBehaviour
             _lookAt = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
             return;
         }
+        
         _tween = transform.DODynamicLookAt(_lookAt, _directionTime);
         Debug.DrawLine(transform.position, _lookAt, Color.red);
 
