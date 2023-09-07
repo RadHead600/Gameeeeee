@@ -17,9 +17,9 @@ public class LevelProgress : Singleton<LevelProgress>
             if (progress >= 1)
             {
                 OnCompletedLevel?.Invoke();
-                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) // êíîïêà äëÿ ïîêàçà ðåêëàìû êàæäûé âòîðîé óðîâåíü
+                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) 
                     AdvertisementController.Instance.ButtonReward.transform.localScale = UnityEngine.Vector3.one;
-                if (GameInformation.Instance.Information.PassedLevel % 3 == 0) // ïîêàçûâàòü ðåêëàìó êàæäûé òðåòèé óðîâåíü 
+                if (GameInformation.Instance.Information.PassedLevel % 3 == 0) 
                     AdvertisementController.Instance.Internal();
             }
         }
