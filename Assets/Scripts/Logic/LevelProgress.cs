@@ -13,12 +13,13 @@ public class LevelProgress : Singleton<LevelProgress>
             _countKillsOnLevel = value;
             float progress = (float)_countKillsOnLevel / RequiredNumberOfKills;
             LevelProgressUI.Instance.UpdateProgressIndicator(progress);
+            
             if (progress >= 1)
             {
                 OnCompletedLevel?.Invoke();
-                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) // кнопка для показа рекламы каждый второй уровень
+                if (GameInformation.Instance.Information.PassedLevel % 2 == 0) // ГЄГ­Г®ГЇГЄГ  Г¤Г«Гї ГЇГ®ГЄГ Г§Г  Г°ГҐГЄГ«Г Г¬Г» ГЄГ Г¦Г¤Г»Г© ГўГІГ®Г°Г®Г© ГіГ°Г®ГўГҐГ­Гј
                     AdvertisementController.Instance.ButtonReward.transform.localScale = UnityEngine.Vector3.one;
-                if (GameInformation.Instance.Information.PassedLevel % 3 == 0) // показывать рекламу каждый третий уровень 
+                if (GameInformation.Instance.Information.PassedLevel % 3 == 0) // ГЇГ®ГЄГ Г§Г»ГўГ ГІГј Г°ГҐГЄГ«Г Г¬Гі ГЄГ Г¦Г¤Г»Г© ГІГ°ГҐГІГЁГ© ГіГ°Г®ГўГҐГ­Гј 
                     AdvertisementController.Instance.Internal();
             }
         }
@@ -39,7 +40,6 @@ public class LevelProgress : Singleton<LevelProgress>
         LevelProgressUI.Instance.UpdateLevelNumText(++GameInformation.Instance.Information.PassedLevel);
         GameInformation.OnInformationChange?.Invoke();
     }
-
     private void OnDestroy()
     {
         OnCompletedLevel -= UpdateLevelParameters;
