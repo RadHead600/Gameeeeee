@@ -11,6 +11,7 @@ public class ChangeLanguageController : MonoBehaviour
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         string lang = GetLang();
+        
         if (lang == "ru")
         {
             LangsList.SetLanguage(0);
