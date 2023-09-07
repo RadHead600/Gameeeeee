@@ -34,6 +34,7 @@ public class PlayerController : Unit
     protected override void Awake()
     {
         base.Awake();
+        
         _startMagnitudeRange = _pickUpItem.MagniteRange;
         SetStaticSpeed(_playerParameters.MinSpeed);
         SetStaticHealth(_playerParameters.MinHealth);
@@ -53,6 +54,7 @@ public class PlayerController : Unit
             _ragdollController.EnablePhysics();
             SetDeathLayer();
         }
+        
         _lookAtController.Tween.Kill();
         _lookAtController.enabled = false;
         StartCoroutine(RestartScene());
