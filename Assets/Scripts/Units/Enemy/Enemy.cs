@@ -59,6 +59,7 @@ public class Enemy : Unit
     private void SetDeathLayer()
     {
         gameObject.layer = _deathLayer;
+        
         foreach (var rb in _ragdollController.RagdollElements)
         {
             rb.gameObject.layer = _deathLayer;
