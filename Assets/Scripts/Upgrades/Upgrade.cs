@@ -33,6 +33,7 @@ public class Upgrade : MonoBehaviour
             }
             GameInformation.OnInformationChange?.Invoke();
         }
+        
         ResetUpgradesPointsController.OnReset += ResetLevel;
         ResetUpgradesPointsController.OnReset += SetUpgradeLevel;
     }
