@@ -50,6 +50,7 @@ public class StartGameController : Singleton<StartGameController>
     {
         int countKillsOnLevel = 0;
         float time = 0;
+        
         foreach (var spawner in _spawners)
             spawner.StartSpawner();
 
@@ -63,6 +64,7 @@ public class StartGameController : Singleton<StartGameController>
             time = (spawnerParameters.TimeToKillInSeconds * countKillsOnLevel + (enemySpawner.WavesToPassed * enemySpawner.EnemiesReloadingTime + 1)) * spawnerParameters.AdditionalTime;
         }
         LevelProgress.Instance.RequiredNumberOfKills = countKillsOnLevel;
+        
         if (_pointsTimer != null)
             _pointsTimer.StartTimer(time);
 
