@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         bool isEnemy = Physics.OverlapSphere(transform.position, 0.2f, _enemies).Length > 0.8F;
+        
         if (other.GetComponent<Unit>() != null && isEnemy)
         {
             other.GetComponent<Unit>().TakeDamage(Damage);
@@ -29,6 +30,7 @@ public class Bullet : MonoBehaviour
         }
 
         bool isBlock = Physics.OverlapSphere(transform.position, 0.2f, _blocks).Length > 0.8F;
+        
         if (isBlock)
             Destroy(gameObject);
     }
