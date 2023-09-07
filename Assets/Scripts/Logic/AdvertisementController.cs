@@ -37,7 +37,9 @@ public class AdvertisementController : Singleton<AdvertisementController>
     private void StopLevel()
     {
         Time.timeScale = 0;
+        
         if (AudioListener.volume > 0)
+        
         {
             isSetAudioListener = true;
             AudioListenerController.Instance.SetAudioListerner(0);
@@ -47,6 +49,7 @@ public class AdvertisementController : Singleton<AdvertisementController>
     public void CloseAdvertisement()
     {
         Time.timeScale = 1;
+        
         if (isSetAudioListener)
         {
             AudioListenerController.Instance.SetAudioListerner(1);
@@ -54,7 +57,6 @@ public class AdvertisementController : Singleton<AdvertisementController>
         }
     }
 
-    // количество рекламной валюты настраивается в jslib документе в вызове функции 
     public void AddGems(int value)
     {
         GameInformation.Instance.Information.Gems += value;
