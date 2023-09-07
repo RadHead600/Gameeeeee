@@ -14,6 +14,7 @@ public class PickUpItemController : MonoBehaviour
     private void FixedUpdate()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, _magniteRange, _itemLayers);
+        
         foreach (var collider in colliders)
         {
             Item item = collider.gameObject.GetComponent<Item>();
@@ -28,6 +29,7 @@ public class PickUpItemController : MonoBehaviour
                         Destroy(item.gameObject);
                         return;
                     }
+                    
                     item.Tween.ChangeEndValue(transform.position, true);
                 });
         }
