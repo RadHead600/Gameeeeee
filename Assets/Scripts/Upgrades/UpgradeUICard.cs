@@ -20,6 +20,7 @@ public class UpgradeUICard : MonoBehaviour
             _infoText.text = _cardInformation.LastValue + " >> " + (int)Sum();
             return;
         }
+        
         _infoText.text = System.Math.Round(System.Convert.ToDouble(_cardInformation.LastValue), 2) + " >> " + System.Math.Round(Sum(), 2);
     }
 
