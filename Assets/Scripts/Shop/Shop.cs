@@ -40,10 +40,12 @@ public class Shop : MonoBehaviour
             objectDemonstration.transform.SetParent(card.ItemDemonstrationObject.transform);
             objectDemonstration.transform.localRotation = _shopParameters.Items[i].ItemObject.transform.localRotation;
             objectDemonstration.transform.localPosition = Vector3.zero;
-            objectDemonstration.transform.localScale = new Vector3(_shopParameters.Items[i].ItemObject.transform.localScale.x, _shopParameters.Items[i].ItemObject.transform.localScale.y, _shopParameters.Items[i].ItemObject.transform.localScale.z);
+            objectDemonstration.transform.localScale = new Vector3(_shopParameters.Items[i].ItemObject.transform.localScale.x,
+            _shopParameters.Items[i].ItemObject.transform.localScale.y, _shopParameters.Items[i].ItemObject.transform.localScale.z);
             card.CostText.text = _shopParameters.Items[i].ItemCost.ToString();
             card.TextTranslator.key = _shopParameters.Items[i].WordsKeyTranslatorText;
             Sprite moneySprite = _shopParameters.MoneySprites[((int)_shopParameters.Items[i].MoneyType)];
+            
             if (moneySprite != null)
                 card.MoneyImage.sprite = moneySprite;
         }
@@ -71,6 +73,7 @@ public class Shop : MonoBehaviour
     {
         int money = IsMoneyIsGoldType(itemNum) ? GameInformation.Instance.Information.Golds : GameInformation.Instance.Information.Gems;
         int cost = _shopParameters.Items[itemNum].ItemCost;
+        
         if (money < cost)
             return;
         if (IsMoneyIsGoldType(itemNum))
@@ -86,6 +89,7 @@ public class Shop : MonoBehaviour
                 GameInformation.Instance.Information.WeaponsBought.Add(itemNum);
                 break;
         }
+        
         _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.RemoveAllListeners();
         _itemsPanel.ShopItemCards[itemNum].ItemButton.onClick.AddListener(() => Equip(itemNum));
         Unlockitem(itemNum, _isEquipKeyText);
